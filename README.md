@@ -10,31 +10,47 @@
 
 # AECIDS
 
-**Adaptive Explainable Edge–Cloud Intrusion Detection System**
+### Adaptive Explainable Edge–Cloud Intrusion Detection System
 
 Confidence-calibrated intelligent routing for resource-constrained IoT networks.
 
-<br/>
-
 <sub>Research Project · Engineering Design &amp; Innovation (EDI) · Smart Kopargaon Hackathon · 2026–27</sub>
 
-<br/><br/>
+<br/>
 
-![Python](https://img.shields.io/badge/Python-3.11-000000?style=flat-square)
-![FastAPI](https://img.shields.io/badge/FastAPI-000000?style=flat-square)
-![React](https://img.shields.io/badge/React-18-000000?style=flat-square)
-![ONNX](https://img.shields.io/badge/ONNX_Runtime-000000?style=flat-square)
-![Docker](https://img.shields.io/badge/Docker-000000?style=flat-square)
+![Python](https://img.shields.io/badge/Python-3.11-000000?style=flat-square&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-000000?style=flat-square&logo=fastapi&logoColor=white)
+![React](https://img.shields.io/badge/React-18-000000?style=flat-square&logo=react&logoColor=white)
+![ONNX](https://img.shields.io/badge/ONNX_Runtime-000000?style=flat-square&logo=onnx&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-000000?style=flat-square&logo=docker&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-000000?style=flat-square)
 ![Status](https://img.shields.io/badge/Status-Active_Development-333333?style=flat-square)
 
 <br/>
 
+<table>
+<tr>
+<td align="center" width="16.6%"><b>67%</b><br/><sub>Overall progress</sub></td>
+<td align="center" width="16.6%"><b>4</b><br/><sub>Cooperative layers</sub></td>
+<td align="center" width="16.6%"><b>&lt; 2 ms</b><br/><sub>Edge target latency</sub></td>
+<td align="center" width="16.6%"><b>&lt; 45 MB</b><br/><sub>Edge memory budget</sub></td>
+<td align="center" width="16.6%"><b>2</b><br/><sub>Inference tiers</sub></td>
+<td align="center" width="16.6%"><b>2026–27</b><br/><sub>Academic year</sub></td>
+</tr>
+</table>
+
+<br/>
+
 **[Overview](#overview)** &nbsp;·&nbsp;
+**[Problem](#problem-statement)** &nbsp;·&nbsp;
+**[Solution](#solution-overview)** &nbsp;·&nbsp;
 **[Architecture](#architecture)** &nbsp;·&nbsp;
 **[Principles](#engineering-principles)** &nbsp;·&nbsp;
 **[Methodology](#research-methodology)** &nbsp;·&nbsp;
+**[Stack](#technology-stack)** &nbsp;·&nbsp;
 **[Installation](#installation)** &nbsp;·&nbsp;
 **[API](#api-reference)** &nbsp;·&nbsp;
+**[SOC](#security-operations-center)** &nbsp;·&nbsp;
 **[Roadmap](#roadmap)**
 
 </div>
@@ -59,18 +75,18 @@ It combines lightweight edge inference, confidence-calibrated routing, cloud-ass
 > This repository is under active engineering development. Backend, edge runtime, and dashboard are being implemented in parallel; experimental validation follows hardware integration.
 
 <table>
-<tr><td width="60%">
+<tr><td width="60%" valign="top">
 
-**Complete**
+**◆ Complete**
 Literature survey · System architecture · Research methodology · Software design specification
 
-**In progress**
+**◆ In progress**
 Backend services · Edge runtime · SOC dashboard
 
-**Pending**
+**◆ Pending**
 Experimental evaluation · Hardware validation
 
-</td><td width="40%">
+</td><td width="40%" valign="top">
 
 ```text
 Research           ████████████████████ 100%
@@ -92,14 +108,32 @@ Evaluation          ░░░░░░░░░░░░░░░░░░░░
 
 <table>
 <tr>
-<td width="25%" align="center"><b>Atharva Vavhal</b><br/><sub>Team Leader</sub></td>
-<td width="25%" align="center"><b>Vedika Mehta</b><br/><sub>Team Member</sub></td>
-<td width="25%" align="center"><b>Swapnil Pawar</b><br/><sub>Team Member</sub></td>
-<td width="25%" align="center"><b>Janhavi Waychal</b><br/><sub>Team Member</sub></td>
+<td align="center" width="25%">
+<b>Atharva Vavhal</b><br/>
+<sub>Team Leader</sub>
+</td>
+<td align="center" width="25%">
+<b>Vedika Mehta</b><br/>
+<sub>Team Member</sub>
+</td>
+<td align="center" width="25%">
+<b>Swapnil Pawar</b><br/>
+<sub>Team Member</sub>
+</td>
+<td align="center" width="25%">
+<b>Janhavi Waychal</b><br/>
+<sub>Team Member</sub>
+</td>
 </tr>
 </table>
 
-<sub>**Institution** Vishwakarma Institute of Technology, Pune &nbsp;·&nbsp; **Department** Computer Engineering (Software Engineering) &nbsp;·&nbsp; **Course** Engineering Design &amp; Innovation &nbsp;·&nbsp; **Year** 2026–27</sub>
+<div align="center">
+<sub>
+
+**Institution** Vishwakarma Institute of Technology, Pune &nbsp;·&nbsp; **Department** Computer Engineering (Software Engineering) &nbsp;·&nbsp; **Course** Engineering Design &amp; Innovation &nbsp;·&nbsp; **Year** 2026–27
+
+</sub>
+</div>
 
 <br/>
 
@@ -115,14 +149,14 @@ Intrusion detection systems today are forced into one of two compromises.
 <tr>
 <td width="50%" valign="top">
 
-**Edge-only**
+**▪ Edge-only**
 
 Extremely low latency, but constrained by memory, compute, and model complexity — weak against sophisticated, polymorphic, or previously unseen attacks.
 
 </td>
 <td width="50%" valign="top">
 
-**Cloud-only**
+**▪ Cloud-only**
 
 Far greater analytical capacity, but every flow must cross the network first — adding latency, WAN load, infrastructure cost, and a dependency on connectivity.
 
@@ -130,7 +164,7 @@ Far greater analytical capacity, but every flow must cross the network first —
 </tr>
 </table>
 
-**The engineering challenge** is a system that delivers low edge latency, efficient cloud utilization, adaptive decision-making, explainable predictions, and deployability on constrained IoT gateways — simultaneously, not as a trade-off.
+> **The engineering challenge** is a system that delivers low edge latency, efficient cloud utilization, adaptive decision-making, explainable predictions, and deployability on constrained IoT gateways — simultaneously, not as a trade-off.
 
 <br/>
 
@@ -147,10 +181,10 @@ Only uncertain traffic ever leaves the device — bandwidth and cloud cost scale
 <br/>
 
 <table>
-<tr><td width="25%"><b>Edge Intelligence</b></td><td>Real-time lightweight intrusion detection</td></tr>
-<tr><td><b>Confidence Calibration</b></td><td>Reliability estimation of every edge prediction</td></tr>
-<tr><td><b>Cloud Intelligence</b></td><td>High-capacity secondary inference for uncertain flows</td></tr>
-<tr><td><b>Explainable Adaptation</b></td><td>Dynamic optimization of the routing threshold</td></tr>
+<tr><td width="26%"><b>◆ Edge Intelligence</b></td><td>Real-time lightweight intrusion detection</td></tr>
+<tr><td><b>◆ Confidence Calibration</b></td><td>Reliability estimation of every edge prediction</td></tr>
+<tr><td><b>◆ Cloud Intelligence</b></td><td>High-capacity secondary inference for uncertain flows</td></tr>
+<tr><td><b>◆ Explainable Adaptation</b></td><td>Dynamic optimization of the routing threshold</td></tr>
 </table>
 
 ```mermaid
@@ -188,11 +222,11 @@ Unlike conventional IDS pipelines that statically partition work between edge an
 
 | Contribution | What it does |
 |---|---|
-| Confidence-Calibrated Routing | Routes each flow based on calibrated posterior confidence, not raw probability |
-| Explainable Adaptation Engine | TreeSHAP attributions continuously retune the routing threshold |
-| Hybrid Inference Architecture | Lightweight edge model paired with a high-capacity cloud ensemble |
-| Edge-Oriented Deployment | Purpose-built for Raspberry Pi and industrial ARM64 gateways |
-| Explainability Feedback Loop | Feature-attribution drift becomes an optimization signal, not just a report |
+| **Confidence-Calibrated Routing** | Routes each flow based on calibrated posterior confidence, not raw probability |
+| **Explainable Adaptation Engine** | TreeSHAP attributions continuously retune the routing threshold |
+| **Hybrid Inference Architecture** | Lightweight edge model paired with a high-capacity cloud ensemble |
+| **Edge-Oriented Deployment** | Purpose-built for Raspberry Pi and industrial ARM64 gateways |
+| **Explainability Feedback Loop** | Feature-attribution drift becomes an optimization signal, not just a report |
 
 <br/>
 
@@ -511,7 +545,8 @@ docker compose up --build
 
 ### Run components individually
 
-**Backend**
+<table>
+<tr><td width="18%" valign="top"><b>Backend</b></td><td>
 
 ```bash
 cd backend
@@ -521,7 +556,8 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-**Frontend**
+</td></tr>
+<tr><td valign="top"><b>Frontend</b></td><td>
 
 ```bash
 cd frontend
@@ -529,12 +565,16 @@ npm install
 npm run dev
 ```
 
-**Edge runtime**
+</td></tr>
+<tr><td valign="top"><b>Edge runtime</b></td><td>
 
 ```bash
 cd edge-agent
 python main.py
 ```
+
+</td></tr>
+</table>
 
 <br/>
 
@@ -708,14 +748,14 @@ The project is deliberately shaped by practical deployment limits.
 
 | Milestone | Status |
 |---|---|
-| Research completion | Complete |
-| Architecture finalization | Complete |
-| Software design specification | Complete |
-| Backend services | In progress |
-| Edge runtime | In progress |
-| SOC dashboard | In progress |
-| Experimental validation | Planned |
-| Research publication | Planned |
+| Research completion | ✅ Complete |
+| Architecture finalization | ✅ Complete |
+| Software design specification | ✅ Complete |
+| Backend services | 🔶 In progress |
+| Edge runtime | 🔶 In progress |
+| SOC dashboard | 🔶 In progress |
+| Experimental validation | ⬜ Planned |
+| Research publication | ⬜ Planned |
 
 <br/>
 
