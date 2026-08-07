@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://www.vishwakarma-group.com/images/logos/VIT-logo.png" width="640" alt="Vishwakarma Institute of Technology, Pune — NAAC A++"/>
+<img src="https://www.vishwakarma-group.com/images/logos/VIT-logo.png" width="320" alt="Vishwakarma Institute of Technology, Pune — NAAC A++"/>
 
 <br/><br/>
 
