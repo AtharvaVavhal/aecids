@@ -1,387 +1,541 @@
 <div align="center">
 
-# 🛡️ AECIDS
+<img src="./docs/images/vit_white_logo-scaled.jpg" width="360" alt="Vishwakarma Institute of Technology" />
 
-### Adaptive Explainable Edge–Cloud Intrusion Detection System
+<br /><br />
 
-**Confidence-Calibrated Intelligent Routing for Resource-Constrained IoT Networks**
+<img src="./docs/images/aecids-logo.jpg" width="240" alt="AECIDS" />
 
-*Detect intrusions at the edge. Explain decisions in the cloud. Adapt in real time.*
+# AECIDS
 
-<br/>
+### Adaptive Explainable Edge–Cloud Intrusion Detection System using Confidence-Calibrated Intelligent Routing for Resource-Constrained IoT Networks
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![React](https://img.shields.io/badge/React-Dashboard-61DAFB?logo=react&logoColor=black)](https://react.dev/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/your-org/aecids/ci.yml?branch=main&label=build)](https://github.com/your-org/aecids/actions)
-[![Stars](https://img.shields.io/github/stars/your-org/aecids?style=social)](https://github.com/your-org/aecids/stargazers)
-[![Issues](https://img.shields.io/github/issues/your-org/aecids)](https://github.com/your-org/aecids/issues)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+Engineering Design & Innovation (EDI) • Smart Kopargaon Hackathon • Academic Year 2026–27
 
-<br/>
+<br />
 
-<img src="docs/assets/banner-placeholder.png" alt="AECIDS Banner" width="100%"/>
+![Python](https://img.shields.io/badge/Python-3.11-080808?style=flat-square&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-080808?style=flat-square&logo=fastapi&logoColor=white)
+![React](https://img.shields.io/badge/React-18-080808?style=flat-square&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-080808?style=flat-square&logo=typescript&logoColor=3178C6)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-080808?style=flat-square&logo=tailwindcss&logoColor=38BDF8)
+![Docker](https://img.shields.io/badge/Docker-080808?style=flat-square&logo=docker&logoColor=2496ED)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16+-080808?style=flat-square&logo=postgresql&logoColor=336791)
+![SQLite](https://img.shields.io/badge/SQLite-080808?style=flat-square&logo=sqlite&logoColor=003B57)
+![LightGBM](https://img.shields.io/badge/LightGBM-080808?style=flat-square)
+![XGBoost](https://img.shields.io/badge/XGBoost-080808?style=flat-square)
+![TreeSHAP](https://img.shields.io/badge/TreeSHAP-080808?style=flat-square)
+![ONNX Runtime](https://img.shields.io/badge/ONNX_Runtime-080808?style=flat-square)
+![Raspberry Pi](https://img.shields.io/badge/Raspberry_Pi-080808?style=flat-square&logo=raspberrypi&logoColor=A22846)
+![EDI Project](https://img.shields.io/badge/EDI_Project-080808?style=flat-square)
+![Active Development](https://img.shields.io/badge/Status-Active_Development-080808?style=flat-square)
 
-<sub>📌 Replace with your project banner — recommended size <code>1600×400</code></sub>
+<br />
+
+[Overview](#about-the-project) •
+[Architecture](#system-architecture) •
+[Quick Start](#installation--quick-start) •
+[API](#api-reference) •
+[Roadmap](#roadmap--future-scope)
 
 </div>
 
-<br/>
-
-> [!NOTE]
-> AECIDS is an active research project exploring **confidence-calibrated edge–cloud routing** for intrusion detection in IoT environments. Interfaces, model formats, and APIs are evolving — see the [Roadmap](#-roadmap) for current status.
-
-<br/>
-
 ---
 
-## 📖 Table of Contents
+# Project Status
 
-- [🎯 Overview](#-overview)
-- [✨ Key Features](#-key-features)
-- [🧠 System Architecture](#-system-architecture)
-- [🛠️ Technology Stack](#️-technology-stack)
-- [📂 Repository Structure](#-repository-structure)
-- [🔬 Research Contributions](#-research-contributions)
-- [🗺️ Roadmap](#️-roadmap)
-- [⚡ Installation](#-installation)
-- [🚀 Usage](#-usage)
-- [📡 API Reference](#-api-reference)
-- [🖼️ Screenshots & Demo](#️-screenshots--demo)
-- [📊 Performance](#-performance)
-- [📄 Research Paper](#-research-paper)
-- [🤝 Contributing](#-contributing)
-- [📜 License](#-license)
-- [📬 Contact](#-contact)
+> [!IMPORTANT]
+> **AECIDS is currently under active engineering development.**
+>
+> - ✅ Research completed
+> - ✅ System architecture completed
+> - ✅ Engineering methodology completed
+> - ✅ Software Design Specification (SDS) completed
+> - 🚧 Backend implementation in progress
+> - 🚧 Edge inference agent in progress
+> - 🚧 Security Operations Center (SOC) dashboard in progress
+> - ⏳ Experimental evaluation pending hardware validation
 
----
-
-## 🎯 Overview
-
-**AECIDS** rethinks how intrusion detection should work on resource-constrained IoT networks. Instead of blindly forwarding every packet to the cloud — burning bandwidth, battery, and latency budget — AECIDS makes a **local decision first** and only escalates when it's genuinely unsure.
-
-```
-📦 Traffic → 🔍 Edge Model → 🎚️ Confidence Check → ⚡ Local Decision  OR  ☁️ Cloud Escalation
+```text
+Research & Literature Review        ████████████████████ 100%
+System Architecture                 ████████████████████ 100%
+Methodology                         ████████████████████ 100%
+Software Design Specification       ████████████████████ 100%
+Backend Services                    ████████████░░░░░░░  In Progress
+Edge Runtime                        █████████░░░░░░░░░░  In Progress
+SOC Dashboard                       ██████████░░░░░░░░░  In Progress
+Experimental Evaluation             ░░░░░░░░░░░░░░░░░░░  Pending
 ```
 
-**How it works, in a nutshell:**
+---
 
-1. 🔹 A **lightweight ML model** on the edge device (e.g. Raspberry Pi) scores incoming traffic in real time.
-2. 🔹 A **confidence calibration layer** quantifies how trustworthy that prediction actually is.
-3. 🔹 An **Intelligent Router** compares confidence against an adaptive threshold `τ` (tau):
-   - **High confidence** → decision is finalized **on the edge**. ⚡ Fast, cheap, private.
-   - **Low confidence** → sample is escalated to the **cloud** for deeper analysis. ☁️ Accurate, explainable.
-4. 🔹 The cloud model's decisions are explained via **TreeSHAP**, producing feature-level attributions.
-5. 🔹 An **Adaptation Engine** consumes those explanations and telemetry to **dynamically re-tune τ**, continuously balancing accuracy, latency, and cloud load.
+# Project Team
 
-> [!TIP]
-> Think of `τ` as a living dial — AECIDS doesn't just route on a fixed rule, it *learns where to draw the line* between "the edge can handle this" and "send it upstairs."
+| Name | Role | Academic Affiliation |
+|------|------|----------------------|
+| **Atharva Vavhal** | Team Leader | Vishwakarma Institute of Technology, Pune |
+| **Vedika Mehta** | Team Member | Vishwakarma Institute of Technology, Pune |
+| **Swapnil Pawar** | Team Member | Vishwakarma Institute of Technology, Pune |
+| **Janhavi Waychal** | Team Member | Vishwakarma Institute of Technology, Pune |
+
+**Department:** Computer Engineering (Software Engineering)
+
+**Course:** Engineering Design & Innovation (EDI)
+
+**Academic Year:** 2026–27
 
 ---
 
-## ✨ Key Features
+# Table of Contents
 
-| | Feature | Description |
-|---|---|---|
-| ⚙️ | **Edge AI** | Lightweight, quantized models built for microcontrollers and SBCs |
-| ☁️ | **Cloud AI** | High-capacity models for deep, high-confidence inference |
-| 🎯 | **Confidence Calibration** | Statistically calibrated confidence scores, not raw softmax guesses |
-| 🔀 | **Intelligent Routing** | Confidence-driven edge/cloud decision routing |
-| 🔄 | **Adaptive Threshold (τ)** | Self-tuning routing threshold based on live feedback |
-| 🔍 | **Explainable AI (TreeSHAP)** | Transparent, feature-level explanations for every cloud decision |
-| 🚀 | **FastAPI Backend** | High-performance async API layer |
-| 📊 | **React Dashboard** | Real-time visualization of alerts, routing, and SHAP explanations |
-| 🐳 | **Docker Deployment** | One-command reproducible deployment |
-| 🍓 | **Raspberry Pi Support** | Validated on real constrained edge hardware |
-| 🗄️ | **PostgreSQL** | Durable, queryable storage for events and telemetry |
-| 📶 | **MQTT** | Lightweight publish/subscribe transport for IoT telemetry |
-| 🔌 | **WebSocket** | Live streaming updates to the dashboard |
-| 🧪 | **Research-Grade Evaluation** | Rigorous benchmarking pipeline for reproducible results |
+- About the Project
+- Problem Statement
+- Solution Overview
+- Research Objectives
+- Novel Contributions
+- Key Features
+- System Architecture
+- Technology Stack
+- Engineering Design Approach
+- Research Methodology
+- Mathematical Formulation
+- Datasets
+- Evaluation Metrics
+- Repository Structure
+- Installation
+- API Reference
+- UI Screenshots
+- Roadmap
+- Contributing
+- License
+- Contact
 
 ---
 
-## 🧠 System Architecture
+# About the Project
 
-### 🔗 Logical Pipeline
+AECIDS is an adaptive hybrid intrusion detection framework designed for resource-constrained IoT deployments where traditional edge-only and cloud-only security architectures exhibit complementary limitations.
+
+The system combines lightweight edge inference with confidence-aware cloud escalation, enabling efficient processing of routine traffic while preserving analytical capacity for ambiguous, previously unseen, or potentially polymorphic attacks.
+
+Rather than treating edge and cloud as independent components, AECIDS models them as cooperative inference layers connected through a confidence-calibrated routing mechanism and an explainability-driven feedback loop.
+
+---
+
+# Problem Statement
+
+Modern IoT environments face two competing constraints.
+
+| Edge-only IDS | Cloud-only IDS |
+|---------------|----------------|
+| Limited computational capacity | WAN dependency |
+| Reduced capability against zero-day attacks | Increased inference latency |
+| Restricted model complexity | High bandwidth utilization |
+| Limited adaptability | Increased operational cost |
+
+AECIDS addresses these limitations through a hierarchical Edge–Cloud architecture that dynamically selects the most appropriate inference layer based on calibrated prediction confidence.
+
+---
+
+# Solution Overview
+
+The system consists of four tightly integrated layers.
+
+| Layer | Purpose |
+|--------|----------|
+| Edge Intelligence | Real-time lightweight inference |
+| Confidence Calibration | Reliable uncertainty estimation |
+| Cloud Intelligence | High-capacity secondary analysis |
+| Explainable Adaptation Engine | Continuous optimization of routing threshold |
+
+---
+
+# Research Objectives
+
+- Design an adaptive Edge–Cloud intrusion detection architecture.
+- Reduce unnecessary cloud inference through confidence-calibrated routing.
+- Preserve low latency for routine traffic.
+- Improve handling of uncertain and zero-day attack patterns.
+- Generate explainable security decisions using TreeSHAP.
+- Continuously optimize routing behaviour through feature importance drift analysis.
+
+---
+
+# Novel Contributions
+
+| Contribution | Description |
+|--------------|-------------|
+| Confidence-Calibrated Routing | Dynamic routing based on calibrated prediction confidence |
+| Explainable Adaptation Engine | TreeSHAP-driven adaptive threshold optimization |
+| Hybrid Inference Pipeline | Lightweight edge inference with cloud escalation |
+| Resource-Constrained Deployment | Designed for Raspberry Pi and industrial gateways |
+| Closed-Loop Learning | Explainability continuously improves routing behaviour |
+
+---
+
+# Key Features
+
+| Feature | Description |
+|----------|-------------|
+| Edge Inference | ONNX-quantized LightGBM model |
+| Cloud Analysis | High-capacity XGBoost ensemble |
+| Confidence Calibration | Temperature Scaling + Platt Calibration |
+| Explainability | Exact TreeSHAP feature attribution |
+| Edge Storage | SQLite offline queue and audit logs |
+| Cloud Storage | PostgreSQL security data lake |
+| Communication | MQTT and WebSockets |
+| Backend | FastAPI asynchronous services |
+| Dashboard | React + TypeScript + TailwindCSS SOC UI |
+| Deployment | Docker containers |
+
+---
+
+# System Architecture
+
+## End-to-End Architecture
 
 ```mermaid
-flowchart TD
-    A[📦 Network Traffic] --> B[🔍 Edge Inference Engine]
-    B --> C[🎯 Confidence Calibration]
-    C --> D{🔀 Intelligent Router<br/>confidence vs τ}
-    D -->|High Confidence| E[⚡ Local Decision<br/>Edge Device]
-    D -->|Low Confidence| F[☁️ Cloud Inference Engine]
-    F --> G[🔍 TreeSHAP Explainer]
-    G --> H[🔄 Adaptation Engine<br/>updates τ]
-    H --> D
-    E --> I[📊 Dashboard]
-    F --> I
-    G --> I
-    H --> I
+graph TD
 
-    style A fill:#1f2937,stroke:#6366f1,color:#fff
-    style B fill:#0f766e,stroke:#14b8a6,color:#fff
-    style C fill:#0f766e,stroke:#14b8a6,color:#fff
-    style D fill:#7c2d12,stroke:#f97316,color:#fff
-    style E fill:#065f46,stroke:#10b981,color:#fff
-    style F fill:#1e3a8a,stroke:#3b82f6,color:#fff
-    style G fill:#1e3a8a,stroke:#3b82f6,color:#fff
-    style H fill:#581c87,stroke:#a855f7,color:#fff
-    style I fill:#374151,stroke:#9ca3af,color:#fff
+A[IoT Devices]
+
+A --> B[Edge Gateway]
+
+B --> C[ONNX Runtime]
+
+C --> D[LightGBM Edge Model]
+
+D --> E[Confidence Calibration]
+
+E -->|P(y|x) ≥ τ| F[Local Decision]
+
+E -->|P(y|x) < τ| G[Secure MQTT/WebSocket]
+
+G --> H[FastAPI Backend]
+
+H --> I[XGBoost Ensemble]
+
+I --> J[TreeSHAP]
+
+J --> K[Adaptive Threshold Controller]
+
+K --> E
+
+H --> L[PostgreSQL]
+
+B --> M[SQLite]
 ```
 
-### 🏗️ Deployment Architecture
+---
+
+## Intelligent Routing State Machine
+
+```mermaid
+stateDiagram-v2
+
+[*] --> EdgeInference
+
+EdgeInference --> ConfidenceCalibration
+
+ConfidenceCalibration --> LocalDecision : P(y|x) ≥ τ
+
+ConfidenceCalibration --> CloudRouting : P(y|x) < τ
+
+CloudRouting --> CloudInference
+
+CloudInference --> Explainability
+
+Explainability --> ThresholdUpdate
+
+ThresholdUpdate --> EdgeInference
+
+LocalDecision --> [*]
+```
+
+---
+
+## Edge–Cloud Sequence Workflow
+
+```mermaid
+sequenceDiagram
+
+participant Device
+participant Edge
+participant Calibration
+participant Cloud
+participant Explainability
+
+Device->>Edge: Network Flow
+
+Edge->>Calibration: Prediction
+
+alt Confidence ≥ τ
+Calibration-->>Edge: Local Decision
+Edge-->>Device: Classification
+else Confidence < τ
+Calibration->>Cloud: Secure Transfer
+Cloud->>Cloud: XGBoost Inference
+Cloud->>Explainability: TreeSHAP
+Explainability-->>Cloud: Feature Attribution
+Cloud-->>Edge: Updated Threshold
+Cloud-->>Device: Classification
+end
+```
+
+---
+
+## Deployment Topology
 
 ```mermaid
 graph LR
-    subgraph EDGE["🍓 Edge Layer"]
-        direction TB
-        E1[IoT Sensors]
-        E2[Edge Agent<br/>ONNX Runtime]
-        E3[Local SQLite Cache]
-        E1 --> E2 --> E3
-    end
 
-    subgraph TRANSPORT["📶 Transport"]
-        M1[(MQTT Broker)]
-    end
+Devices --> Gateway
 
-    subgraph CLOUD["☁️ Cloud Layer"]
-        direction TB
-        C1[FastAPI Gateway]
-        C2[Cloud Inference<br/>LightGBM / XGBoost]
-        C3[TreeSHAP Service]
-        C4[Adaptation Engine]
-        C5[(PostgreSQL)]
-        C1 --> C2 --> C3 --> C4
-        C2 --> C5
-        C4 --> C5
-    end
+Gateway --> EdgeModel
 
-    subgraph CLIENT["🖥️ Presentation Layer"]
-        D1[React Dashboard]
-        D2[WebSocket Stream]
-    end
+Gateway --> SQLite
 
-    E2 -- "high-confidence samples" --> E3
-    E2 -- "low-confidence samples" --> M1
-    M1 --> C1
-    C4 -- "updated τ" --> M1
-    M1 -- "τ sync" --> E2
-    C5 --> D2 --> D1
+Gateway --> MQTT
 
-    style EDGE fill:#0f172a,stroke:#14b8a6,color:#fff
-    style TRANSPORT fill:#1e1b4b,stroke:#818cf8,color:#fff
-    style CLOUD fill:#1e3a8a,stroke:#3b82f6,color:#fff
-    style CLIENT fill:#3f2d1c,stroke:#f59e0b,color:#fff
-```
+MQTT --> FastAPI
 
-<details>
-<summary>📐 <strong>View high-resolution architecture diagram (placeholder)</strong></summary>
+FastAPI --> PostgreSQL
 
-<br/>
+FastAPI --> SOC
 
-<img src="docs/assets/architecture-diagram-placeholder.png" alt="AECIDS Detailed Architecture" width="100%"/>
-
-<sub>📌 Replace with detailed system diagram — export from Figma/Excalidraw at 2x resolution</sub>
-
-</details>
-
----
-
-## 🛠️ Technology Stack
-
-<div align="center">
-
-### Machine Learning & Explainability
-
-| Technology | Purpose |
-|---|---|
-| ![Python](https://img.shields.io/badge/-Python-3776AB?logo=python&logoColor=white) | Core language for ML pipeline & backend |
-| ![LightGBM](https://img.shields.io/badge/-LightGBM-02569B?logo=leaflet&logoColor=white) | Gradient-boosted edge/cloud classifiers |
-| ![XGBoost](https://img.shields.io/badge/-XGBoost-EC1C24?logo=xgboost&logoColor=white) | High-capacity cloud-side classifier |
-| ![ONNX](https://img.shields.io/badge/-ONNX%20Runtime-005CED?logo=onnx&logoColor=white) | Optimized edge inference runtime |
-| ![Scikit-learn](https://img.shields.io/badge/-Scikit--learn-F7931E?logo=scikitlearn&logoColor=white) | Calibration, preprocessing & metrics |
-| ![TreeSHAP](https://img.shields.io/badge/-TreeSHAP-6366F1?logo=airplayvideo&logoColor=white) | Feature-level explainability engine |
-
-### Backend & Data
-
-| Technology | Purpose |
-|---|---|
-| ![FastAPI](https://img.shields.io/badge/-FastAPI-009688?logo=fastapi&logoColor=white) | Async REST/WebSocket API layer |
-| ![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-4169E1?logo=postgresql&logoColor=white) | Cloud-side persistent storage |
-| ![SQLite](https://img.shields.io/badge/-SQLite-003B57?logo=sqlite&logoColor=white) | Edge-side local caching |
-| ![MQTT](https://img.shields.io/badge/-MQTT-660066?logo=mqtt&logoColor=white) | Lightweight IoT messaging transport |
-
-### Frontend
-
-| Technology | Purpose |
-|---|---|
-| ![React](https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=black) | Real-time monitoring dashboard |
-| ![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript&logoColor=white) | Type-safe frontend development |
-| ![TailwindCSS](https://img.shields.io/badge/-TailwindCSS-06B6D4?logo=tailwindcss&logoColor=white) | Utility-first UI styling |
-
-### DevOps
-
-| Technology | Purpose |
-|---|---|
-| ![Docker](https://img.shields.io/badge/-Docker-2496ED?logo=docker&logoColor=white) | Containerized edge & cloud services |
-| ![Docker Compose](https://img.shields.io/badge/-Docker%20Compose-2496ED?logo=docker&logoColor=white) | Multi-service orchestration |
-| ![GitHub Actions](https://img.shields.io/badge/-GitHub%20Actions-2088FF?logo=githubactions&logoColor=white) | CI/CD automation |
-
-</div>
-
----
-
-## 📂 Repository Structure
-
-```
-AECIDS/
-├── 📁 edge/                        # Edge-side agent & inference
-│   ├── 📁 models/                  # Quantized ONNX edge models
-│   ├── 📁 calibration/             # Confidence calibration logic
-│   ├── 📁 router/                  # Intelligent routing client
-│   └── 📄 agent.py                 # Main edge agent entrypoint
-│
-├── 📁 cloud/                       # Cloud-side services
-│   ├── 📁 api/                     # FastAPI application
-│   │   ├── 📁 routes/              # REST & WebSocket endpoints
-│   │   ├── 📁 services/            # Business logic
-│   │   └── 📄 main.py              # API entrypoint
-│   ├── 📁 models/                  # LightGBM / XGBoost cloud models
-│   ├── 📁 explainability/          # TreeSHAP integration
-│   └── 📁 adaptation/              # Adaptive threshold (τ) engine
-│
-├── 📁 dashboard/                   # React + TypeScript frontend
-│   ├── 📁 src/
-│   │   ├── 📁 components/
-│   │   ├── 📁 pages/
-│   │   └── 📁 hooks/
-│   └── 📄 package.json
-│
-├── 📁 datasets/                    # Dataset loaders & preprocessing
-├── 📁 evaluation/                  # Benchmarking & research metrics
-├── 📁 docs/                        # Documentation & assets
-│   └── 📁 assets/                  # Images, diagrams, banners
-├── 📁 tests/                       # Unit & integration tests
-├── 📁 docker/                      # Dockerfiles & compose configs
-├── 📄 docker-compose.yml
-├── 📄 requirements.txt
-├── 📄 CONTRIBUTING.md
-├── 📄 LICENSE
-└── 📄 README.md
+SOC --> Analyst
 ```
 
 ---
 
-## 🔬 Research Contributions
+# Technology Stack
 
-<details open>
-<summary><strong>1️⃣ Confidence-Calibrated Routing</strong></summary>
-<br/>
+## Machine Learning
 
-Traditional edge–cloud IDS designs route traffic using static rules or raw model confidence — both are unreliable, since uncalibrated confidence scores are often overconfident. AECIDS applies **post-hoc calibration** (e.g., temperature scaling / isotonic regression) so that a "90% confident" prediction is *actually* right ~90% of the time, making routing decisions statistically meaningful rather than heuristic guesses.
-
-</details>
-
-<details>
-<summary><strong>2️⃣ Adaptive Threshold Optimization</strong></summary>
-<br/>
-
-The routing threshold `τ` is not fixed. AECIDS' **Adaptation Engine** continuously observes cloud outcomes, SHAP-derived error patterns, and system load, then re-optimizes `τ` to balance three competing objectives:
-
-- 🎯 **Detection accuracy**
-- ⚡ **Edge latency**
-- ☁️ **Cloud resource consumption**
-
-</details>
-
-<details>
-<summary><strong>3️⃣ Explainable AI for Security Operators</strong></summary>
-<br/>
-
-Every cloud-side decision is paired with a **TreeSHAP explanation**, giving security analysts feature-level insight into *why* traffic was flagged — critical for trust, auditability, and regulatory compliance in production IDS deployments.
-
-</details>
-
-<details>
-<summary><strong>4️⃣ Edge–Cloud Computing for IoT</strong></summary>
-<br/>
-
-AECIDS demonstrates a practical **split-inference paradigm** for constrained IoT fleets, minimizing bandwidth and latency while preserving the detection power of large cloud models — validated on real edge hardware (Raspberry Pi class devices).
-
-</details>
-
-<details>
-<summary><strong>5️⃣ IoT Security at Scale</strong></summary>
-<br/>
-
-By combining lightweight local inference with selective cloud escalation, AECIDS offers a **deployable, scalable blueprint** for securing large, heterogeneous IoT networks without overwhelming central infrastructure.
-
-</details>
+| Component | Technology |
+|------------|------------|
+| Edge Model | LightGBM |
+| Cloud Model | XGBoost |
+| Explainability | TreeSHAP |
+| Runtime | ONNX Runtime |
 
 ---
 
-## 🗺️ Roadmap
+## Backend
 
-- [x] 🔬 Research & literature review
-- [x] 🏗️ System architecture design
-- [x] 📐 Methodology definition
-- [ ] ⚙️ Edge implementation
-- [ ] ☁️ Cloud implementation
-- [ ] 📊 Dashboard development
-- [ ] 🧪 Evaluation & benchmarking
-- [ ] 📄 Publication
+| Component | Technology |
+|------------|------------|
+| API | FastAPI |
+| Language | Python |
+| Async Runtime | Uvicorn |
+| Communication | MQTT / WebSockets |
+
+---
+
+## Frontend
+
+| Component | Technology |
+|------------|------------|
+| Framework | React 18 |
+| Language | TypeScript |
+| Styling | TailwindCSS |
+
+---
+
+## Databases
+
+| Purpose | Technology |
+|----------|------------|
+| Edge Queue | SQLite |
+| Cloud Storage | PostgreSQL 16+ |
+
+---
+
+## Deployment
+
+| Component | Technology |
+|-----------|------------|
+| Containers | Docker |
+| Edge Hardware | Raspberry Pi (ARM64) |
+| Gateway | Industrial Edge Gateway |
+
+---
+
+# Engineering Design Approach
+
+> [!IMPORTANT]
+> The architectural separation between edge inference and cloud inference is a fundamental design invariant.
+
+### Level 0
+
+- ONNX Runtime
+- Quantized LightGBM
+- Memory budget below 45 MB
+- Target latency below 2.0 ms
+
+### Level 1
+
+- FastAPI
+- XGBoost Ensemble
+- Explainability Engine
+- Adaptive threshold optimization
+
+### Design Invariants
+
+- Edge inference always executes first.
+- Cloud inference executes only for low-confidence samples.
+- Every cloud prediction produces TreeSHAP explanations.
+- Threshold optimization is explainability driven.
+- Edge and cloud communicate only through secure channels.
+
+---
+
+# Research Methodology
+
+The routing mechanism is governed by calibrated confidence estimation.
+
+## Temperature Scaling
+
+\[
+P_i=\frac{\exp(z_i/T)}
+{\sum_j \exp(z_j/T)}
+\]
+
+where
+
+- \(z_i\) denotes model logits
+- \(T\) is the learned temperature parameter
+
+---
+
+## Adaptive Routing Threshold
+
+\[
+Route(x)=
+\begin{cases}
+Edge, & P(y|x)\ge \tau\\
+Cloud, & P(y|x)<\tau
+\end{cases}
+\]
+
+where
+
+\[
+\tau=f(\Delta SHAP)
+\]
+
+---
+
+## TreeSHAP
+
+For each prediction,
+
+\[
+f(x)=\phi_0+\sum_{i=1}^{M}\phi_i
+\]
+
+where
+
+- \(\phi_i\) denotes the contribution of feature \(i\)
+- \(\phi_0\) is the expected prediction
+
+---
+
+# Datasets & Evaluation Metrics
+
+## Datasets
+
+| Dataset | Status |
+|----------|--------|
+| Dataset Selection | In Progress |
+| Training Dataset | [To be documented] |
+| Validation Dataset | [To be documented] |
+| Test Dataset | [To be documented] |
+
+---
+
+## Evaluation Metrics
+
+| Metric | Result |
+|---------|--------|
+| Accuracy | [To be evaluated] |
+| Precision | [To be evaluated] |
+| Recall | [To be evaluated] |
+| F1 Score | [To be evaluated] |
+| ROC-AUC | [To be evaluated] |
+| Edge Latency | [To be evaluated] |
+| Cloud Latency | [To be evaluated] |
+| Memory Usage | [To be evaluated] |
+| Energy Consumption | [To be evaluated] |
 
 > [!NOTE]
-> Track detailed progress on the [Project Board](https://github.com/your-org/aecids/projects) and [open issues](https://github.com/your-org/aecids/issues).
+> Performance metrics will be published after hardware-in-the-loop evaluation and experimental validation.
 
 ---
 
-## ⚡ Installation
+# Repository Structure
 
-> [!WARNING]
-> AECIDS is under active research development. APIs and model formats may change without notice — pin a specific release tag for reproducible experiments.
-
-### Prerequisites
-
-- Python 3.10+
-- Node.js 18+
-- Docker & Docker Compose
-- (Optional) Raspberry Pi 4/5 for edge deployment
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/your-org/aecids.git
-cd aecids
+```text
+AECIDS
+│
+├── backend/
+├── edge-agent/
+├── frontend/
+├── models/
+├── datasets/
+├── docs/
+│   ├── images/
+│   ├── architecture/
+│   └── research/
+├── scripts/
+├── docker/
+├── tests/
+├── docker-compose.yml
+├── requirements.txt
+└── README.md
 ```
 
-### 2. Set up the backend
+---
 
-```bash
-python -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\activate
-pip install -r requirements.txt
+## Repository Layout
+
+```mermaid
+graph TD
+
+Root
+
+Root --> Backend
+
+Root --> Edge
+
+Root --> Frontend
+
+Root --> Models
+
+Root --> Datasets
+
+Root --> Docs
+
+Root --> Docker
+
+Root --> Tests
 ```
 
-### 3. Set up the dashboard
+---
+
+# Installation & Quick Start
+
+## Clone
 
 ```bash
-cd dashboard
-npm install
+git clone https://github.com/<username>/AECIDS.git
+
+cd AECIDS
 ```
 
-### 4. Configure environment variables
+---
 
-```bash
-cp .env.example .env
-# Edit .env with your PostgreSQL, MQTT broker, and API settings
-```
-
-### 5. Launch with Docker Compose
+## Docker Compose
 
 ```bash
 docker compose up --build
@@ -389,197 +543,125 @@ docker compose up --build
 
 ---
 
-## 🚀 Usage
-
-### Start the cloud API
+## Backend
 
 ```bash
-uvicorn cloud.api.main:app --host 0.0.0.0 --port 8000 --reload
+cd backend
+
+pip install -r requirements.txt
+
+uvicorn app.main:app --reload
 ```
 
-### Start the edge agent
+---
+
+## Frontend
 
 ```bash
-python edge/agent.py --config edge/config.yaml
-```
+cd frontend
 
-### Launch the dashboard
+npm install
 
-```bash
-cd dashboard
 npm run dev
 ```
 
-### Run the full evaluation suite
+---
+
+## Edge Agent
 
 ```bash
-python evaluation/run_benchmarks.py --config evaluation/config.yaml
+cd edge-agent
+
+python main.py
 ```
 
 ---
 
-## 📡 API Reference
+# API Reference
 
-> [!NOTE]
-> Full interactive API docs are auto-generated by FastAPI and served at `/docs` (Swagger UI) and `/redoc`.
+## REST Endpoints
 
 | Method | Endpoint | Description |
-|---|---|---|
-| `POST` | `/api/v1/inference/edge` | Submit edge-side sample metadata |
-| `POST` | `/api/v1/inference/cloud` | Trigger cloud inference for a routed sample |
-| `GET` | `/api/v1/explain/{sample_id}` | Retrieve TreeSHAP explanation for a decision |
-| `GET` | `/api/v1/threshold` | Get current adaptive routing threshold (τ) |
-| `POST` | `/api/v1/threshold/update` | Trigger manual threshold recalculation |
-| `GET` | `/api/v1/alerts` | List recent intrusion alerts |
-| `GET` | `/api/v1/metrics` | Retrieve system performance metrics |
-| `WS` | `/ws/live` | Real-time event stream for the dashboard |
+|---------|----------|-------------|
+| GET | /health | Service health |
+| POST | /predict | Edge prediction |
+| POST | /cloud/predict | Cloud inference |
+| GET | /metrics | Runtime metrics |
+| GET | /threshold | Current routing threshold |
 
 ---
 
-## 🖼️ Screenshots & Demo
+## WebSocket
 
-<div align="center">
-
-### 🎬 Live Demo
-
-<img src="docs/assets/demo-placeholder.gif" alt="AECIDS Demo" width="90%"/>
-
-<sub>📌 Replace with a recorded GIF/MP4 of the dashboard in action</sub>
-
-<br/><br/>
-
-| Dashboard Overview | Alert Feed |
-|---|---|
-| <img src="docs/assets/screenshot-dashboard.png" width="100%"/> | <img src="docs/assets/screenshot-alerts.png" width="100%"/> |
-
-| SHAP Explanation Graph | Threshold History |
-|---|---|
-| <img src="docs/assets/screenshot-shap.png" width="100%"/> | <img src="docs/assets/screenshot-threshold.png" width="100%"/> |
-
-| System Health Monitor | Architecture View |
-|---|---|
-| <img src="docs/assets/screenshot-health.png" width="100%"/> | <img src="docs/assets/screenshot-architecture.png" width="100%"/> |
-
-</div>
+| Endpoint | Purpose |
+|-----------|---------|
+| /ws/events | Live SOC events |
+| /ws/alerts | Security alerts |
+| /ws/status | Gateway status |
 
 ---
 
-## 📊 Performance
+# UI Screenshots
 
-> [!NOTE]
-> Benchmark figures below are placeholders — populate with results from `evaluation/run_benchmarks.py`.
+| Security Operations Center | Edge Monitoring |
+|----------------------------|-----------------|
+| `docs/images/soc-dashboard.png` | `docs/images/edge-dashboard.png` |
 
-### Detection Performance
-
-| Model | Accuracy | Precision | Recall | F1-Score | AUC-ROC |
-|---|---|---|---|---|---|
-| Edge Model (LightGBM) | 0.0% | 0.0% | 0.0% | 0.0% | 0.00 |
-| Cloud Model (XGBoost) | 0.0% | 0.0% | 0.0% | 0.0% | 0.00 |
-| AECIDS (End-to-End) | 0.0% | 0.0% | 0.0% | 0.0% | 0.00 |
-
-### Efficiency Metrics
-
-| Metric | Edge-Only | Cloud-Only | AECIDS (Adaptive) |
-|---|---|---|---|
-| Avg. Latency (ms) | — | — | — |
-| Cloud Offload Rate (%) | — | — | — |
-| Bandwidth Usage (MB/hr) | — | — | — |
-| Energy Consumption (J) | — | — | — |
-
-> [!TIP]
-> Run `python evaluation/run_benchmarks.py --export markdown` to auto-generate an up-to-date version of these tables.
+| Explainability | Threat Timeline |
+|----------------|-----------------|
+| `docs/images/shap-analysis.png` | `docs/images/threat-timeline.png` |
 
 ---
 
-## 📄 Research Paper
+# Roadmap & Future Scope
 
-<details>
-<summary><strong>📌 Problem Statement</strong></summary>
-<br/>
-IoT networks generate massive traffic volumes that overwhelm cloud-only intrusion detection systems, while edge-only systems lack the model capacity for high-accuracy detection. A gap exists for a system that intelligently balances the two.
-</details>
-
-<details>
-<summary><strong>🎯 Objectives</strong></summary>
-<br/>
-
-- Design a confidence-calibrated routing mechanism between edge and cloud inference
-- Develop an adaptive threshold optimization strategy driven by explainability signals
-- Validate the system on real constrained IoT hardware
-- Provide interpretable, auditable detection decisions via TreeSHAP
-
-</details>
-
-<details>
-<summary><strong>💡 Novelty</strong></summary>
-<br/>
-Unlike prior edge–cloud IDS work that uses static or heuristic routing, AECIDS closes the loop between explainability and routing policy — SHAP-derived insight directly informs how the adaptive threshold evolves over time.
-</details>
-
-<details>
-<summary><strong>🧪 Methodology</strong></summary>
-<br/>
-A two-tier inference pipeline is implemented: a lightweight quantized model on the edge and a high-capacity ensemble model in the cloud, connected via a confidence-calibrated router. Threshold adaptation is modeled as a continuous feedback-driven optimization process.
-</details>
-
-<details>
-<summary><strong>📚 Datasets</strong></summary>
-<br/>
-
-- Placeholder — e.g., CICIoT2023, TON_IoT, N-BaIoT, or custom-collected traffic
-
-</details>
-
-<details>
-<summary><strong>📏 Evaluation Metrics</strong></summary>
-<br/>
-
-- Accuracy, Precision, Recall, F1-Score, AUC-ROC
-- Cloud offload rate & bandwidth savings
-- Edge inference latency
-- Calibration error (ECE)
-- SHAP-based explanation fidelity
-
-</details>
+| Phase | Status |
+|---------|--------|
+| Research & Architecture | ✅ Complete |
+| SDS Documentation | ✅ Complete |
+| Backend Services | 🚧 In Progress |
+| Edge Runtime | 🚧 In Progress |
+| SOC Dashboard | 🚧 In Progress |
+| Experimental Evaluation | ⏳ Planned |
+| Hardware Validation | ⏳ Planned |
+| Research Publication | ⏳ Planned |
 
 ---
 
-## 🤝 Contributing
+# Contributing
 
-Contributions are what make the open-source community an incredible place to learn, build, and collaborate. Any contributions you make are **greatly appreciated**.
+Contributions are welcome.
 
-1. 🍴 Fork the project
-2. 🌿 Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. ✅ Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. 📤 Push to the branch (`git push origin feature/AmazingFeature`)
-5. 🔁 Open a Pull Request
-
-> [!TIP]
-> Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) for our code of conduct, coding standards, and the process for submitting pull requests.
+Please open an issue before submitting significant architectural or implementation changes.
 
 ---
 
-## 📜 License
+# License
 
-Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for full text.
+This project is distributed under the **MIT License**.
+
+See the `LICENSE` file for additional information.
 
 ---
 
-## 📬 Contact
+# Contact
 
-<div align="center">
+**Project**
 
-[![GitHub](https://img.shields.io/badge/GitHub-your--org-181717?logo=github&logoColor=white)](https://github.com/your-org/aecids)
-[![Email](https://img.shields.io/badge/Email-contact%40aecids.dev-D14836?logo=gmail&logoColor=white)](mailto:contact@aecids.dev)
+AECIDS — Adaptive Explainable Edge–Cloud Intrusion Detection System
 
-</div>
+**Institution**
+
+Vishwakarma Institute of Technology (VIT), Pune
+
+Department of Computer Engineering (Software Engineering)
 
 ---
 
 <div align="center">
 
-**Built with ❤️ for AI-powered IoT Security**
+---
 
-⭐️ If you find AECIDS useful, consider giving it a star!
+**Vishwakarma Institute of Technology (VIT), Pune • Department of Computer Engineering • Made with ❤️ in Pune, India**
 
 </div>
