@@ -1,12 +1,12 @@
 <div align="center">
 
-<img src="./docs/images/vit_white_logo-scaled.jpg" width="260" alt="Vishwakarma Institute of Technology"/>
-
-&nbsp;&nbsp;&nbsp;
-
-<img src="./docs/images/aecids-logo.jpg" width="100" alt="AECIDS"/>
+<img src="./https://i.ibb.co/zVLVb6VB/vit-logo-dark.png" width="640" alt="Vishwakarma Institute of Technology, Pune — NAAC A++"/>
 
 <br/><br/>
+
+<img src="./docs/images/aecids_logo.png" width="300" alt="AECIDS"/>
+
+<br/>
 
 # AECIDS
 
