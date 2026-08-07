@@ -1,10 +1,10 @@
 <div align="center">
 
-<img src="https://www.vishwakarma-group.com/images/logos/VIT-logo.png" width="320" alt="Vishwakarma Institute of Technology, Pune — NAAC A++"/>
+<img src="http://i.ibb.co/zVLVb6VB/vit-logo-dark.png" width="640" alt="Vishwakarma Institute of Technology, Pune — NAAC A++"/>
 
 <br/><br/>
 
-<img src="https://i.ibb.co/m5ZSpM0f/aecids-logo.png" width="150" alt="AECIDS"/>
+<img src="https://i.ibb.co/m5ZSpM0f/aecids-logo.png" width="300" alt="AECIDS"/>
 
 <br/>
 
@@ -21,10 +21,12 @@
 <br/><br/>
 
 <!-- Tech badges — color-coded by layer -->
-![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009485?style=for-the-badge&logo=fastapi&logoColor=white)
-![React](https://img.shields.io/badge/React-18-149ECA?style=for-the-badge&logo=react&logoColor=white)
+![React](https://img.shields.io/badge/React-149ECA?style=for-the-badge&logo=react&logoColor=white)
 ![ONNX](https://img.shields.io/badge/ONNX_Runtime-6E4AFF?style=for-the-badge&logo=onnx&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-1D63ED?style=for-the-badge&logo=docker&logoColor=white)
 
 <!-- Status badges -->
@@ -41,6 +43,7 @@
 <a href="#research-methodology"><b>Methodology</b></a> &nbsp;&nbsp;•&nbsp;&nbsp;
 <a href="#installation"><b>Installation</b></a> &nbsp;&nbsp;•&nbsp;&nbsp;
 <a href="#api-reference"><b>API</b></a> &nbsp;&nbsp;•&nbsp;&nbsp;
+<a href="#security"><b>Security</b></a> &nbsp;&nbsp;•&nbsp;&nbsp;
 <a href="#roadmap"><b>Roadmap</b></a>
 </p>
 
@@ -225,7 +228,7 @@ Unlike conventional IDS pipelines that statically partition work between edge an
 
 ## Architecture
 
-The system is organized into four cooperative layers, each with a single, strictly-scoped responsibility.
+AECIDS follows a **three-tier Edge–Cloud architecture** — Edge Layer, Cloud Layer, and Dashboard/UI Layer — with the Edge and Cloud communicating securely over REST APIs (HTTPS).
 
 ```mermaid
 graph TD
@@ -235,7 +238,7 @@ graph TD
     D --> E[LightGBM · Edge Model]
     E --> F[Confidence Calibration]
     F -->|"P(y|x) ≥ τ"| G[Local Decision]
-    F -->|"P(y|x) < τ"| H[Secure MQTT / WebSocket]
+    F -->|"P(y|x) < τ"| H[Secure REST API / HTTPS]
     H --> I[FastAPI Backend]
     I --> J[XGBoost Ensemble]
     J --> K[TreeSHAP Explainability]
@@ -243,6 +246,8 @@ graph TD
     L -.-> F
     I --> M[(PostgreSQL)]
     B --> N[(SQLite)]
+    I --> O[WebSocket]
+    O --> P[SOC Dashboard]
 ```
 
 <br/>
@@ -284,7 +289,7 @@ sequenceDiagram
         Calibration-->>Edge: Local decision
         Edge-->>Device: Classification
     else confidence < τ
-        Calibration->>Cloud: Secure transfer
+        Calibration->>Cloud: REST API call (HTTPS)
         Cloud->>Cloud: XGBoost inference
         Cloud->>SHAP: Feature attribution
         SHAP-->>Cloud: Explanation
@@ -309,9 +314,9 @@ graph LR
         API[FastAPI] --> ML[XGBoost]
         ML --> SHAP[TreeSHAP]
         API --> DB2[(PostgreSQL)]
-        DB2 --> SOC[SOC Dashboard]
+        API -->|WebSocket| SOC[SOC Dashboard]
     end
-    GW -->|MQTT| API
+    GW -->|"REST API / HTTPS"| API
 ```
 
 </details>
@@ -323,7 +328,7 @@ graph LR
 <table>
 <tr><td width="22%">🧠&nbsp; <b>Edge Intelligence</b></td><td>
 
-ONNX-quantized LightGBM on ARM64 hardware. Target latency **&lt; 2 ms**, memory budget **&lt; 45 MB**, persisted locally through SQLite.
+ONNX-quantized LightGBM on the Raspberry Pi 5 (ARM64) target hardware. Target latency **&lt; 2 ms**, memory budget **&lt; 45 MB**, persisted locally through SQLite.
 
 </td></tr>
 <tr><td>🎯&nbsp; <b>Confidence Calibration</b></td><td>
@@ -333,7 +338,7 @@ Post-hoc calibration — Temperature Scaling and Platt Scaling — converts raw 
 </td></tr>
 <tr><td>☁️&nbsp; <b>Cloud Intelligence</b></td><td>
 
-FastAPI-fronted XGBoost ensemble handles the flows the edge model is uncertain about, communicating over MQTT/WebSocket and persisting to PostgreSQL.
+FastAPI-fronted XGBoost ensemble handles the flows the edge model is uncertain about, communicating over secure REST APIs and persisting to PostgreSQL.
 
 </td></tr>
 <tr><td>🔍&nbsp; <b>Explainable Adaptation</b></td><td>
@@ -438,32 +443,75 @@ where `φ₀` is the expected prediction and `φᵢ` is feature `i`'s contributi
 
 ## Technology Stack
 
+> [!NOTE]
+> This stack is **frozen** for the duration of the project. All architecture diagrams, SDS/SRS documents, implementation plans, and deployment guides are written against it; it is not changed without an explicit decision to revise it.
+
 AECIDS separates infrastructure into independent layers to simplify deployment, scaling, and maintenance.
 
 <table>
-<tr><td width="20%" valign="top">🤖&nbsp; <b>Machine Learning</b></td><td valign="top">
+<tr><td width="20%" valign="top">💻&nbsp; <b>Languages</b></td><td valign="top">
 
-`LightGBM` (edge) · `XGBoost` (cloud) · `TreeSHAP` (explainability) · `ONNX Runtime` (embedded execution)
+`Python 3.11+` · `TypeScript` · `SQL` · `Bash` · `YAML` · `Markdown`
 
 </td></tr>
-<tr><td valign="top">⚙️&nbsp; <b>Backend</b></td><td valign="top">
+<tr><td valign="top">🤖&nbsp; <b>AI / Machine Learning</b></td><td valign="top">
 
-`FastAPI` · `Python 3.11` · `Uvicorn` · `Pydantic` · `REST + WebSocket` · `MQTT`
+`LightGBM` (edge model) · `XGBoost` (cloud model) · `TreeSHAP` (explainability) · `Scikit-learn` (feature scaling) · `Joblib` (serialization) · `ONNX Runtime` (edge deployment)
+
+</td></tr>
+<tr><td valign="top">📡&nbsp; <b>Edge Layer</b></td><td valign="top">
+
+`Python` · `LightGBM` · `ONNX Runtime` · `NumPy` · `Pandas` · `Scikit-learn` · `Joblib` · `SQLite` · `Pydantic` · `Requests` · `PyShark` · `Scapy`
+
+</td></tr>
+<tr><td valign="top">☁️&nbsp; <b>Cloud Layer</b></td><td valign="top">
+
+`FastAPI` · `Uvicorn` · `Gunicorn` · `XGBoost` · `SHAP (TreeSHAP)` · `Scikit-learn` · `NumPy` · `Pandas` · `Joblib` · `Pydantic`
 
 </td></tr>
 <tr><td valign="top">🖥️&nbsp; <b>Frontend</b></td><td valign="top">
 
-`React 18` · `TypeScript` · `TailwindCSS` · `Recharts` · `Lucide`
+`React` · `TypeScript` · `Vite` · `Tailwind CSS` · `React Router` · `Axios` · `Recharts` · `Lucide Icons`
 
 </td></tr>
-<tr><td valign="top">🗄️&nbsp; <b>Storage</b></td><td valign="top">
+<tr><td valign="top">🗄️&nbsp; <b>Database</b></td><td valign="top">
 
-`SQLite` (edge queue) · `PostgreSQL 16+` (security data lake)
+`SQLite` (edge) · `PostgreSQL` (cloud)
 
 </td></tr>
-<tr><td valign="top">🐳&nbsp; <b>Infrastructure</b></td><td valign="top">
+<tr><td valign="top">🔌&nbsp; <b>API Communication</b></td><td valign="top">
 
-`Docker` · `Docker Compose` · `Raspberry Pi (ARM64)` · `Industrial Edge Gateway`
+`REST API` · `JSON` · `HTTPS` · `WebSocket` (real-time dashboard updates) · `Multipart Upload` (where required)
+
+</td></tr>
+<tr><td valign="top">🔐&nbsp; <b>Security</b></td><td valign="top">
+
+`JWT Authentication` · `Password Hashing` · `HTTPS` · `API Key Protection` · `Input Validation` · `RBAC` · `CORS Configuration`
+
+</td></tr>
+<tr><td valign="top">📶&nbsp; <b>Networking</b></td><td valign="top">
+
+`IPv4` · `TCP` · `UDP` · `HTTP` · `HTTPS` · `Ethernet` · `Wi-Fi`
+
+</td></tr>
+<tr><td valign="top">🐳&nbsp; <b>Containerization &amp; Deployment</b></td><td valign="top">
+
+`Docker` · `Docker Compose` · `Nginx` · `Ubuntu Server` (cloud) · `Linux Service` (edge)
+
+</td></tr>
+<tr><td valign="top">📟&nbsp; <b>Edge Hardware</b></td><td valign="top">
+
+`Raspberry Pi 5` (target) · Linux laptop / mini PC / industrial gateway (alternative) — quad-core CPU, 4 GB RAM, 32 GB storage, Wi-Fi + Ethernet minimum
+
+</td></tr>
+<tr><td valign="top">🛠️&nbsp; <b>Development &amp; Testing</b></td><td valign="top">
+
+`VS Code` · `Git` · `GitHub` (Issues, Projects, Actions) · `Docker Desktop` · `Postman` · `Swagger UI` · `Pytest`
+
+</td></tr>
+<tr><td valign="top">📄&nbsp; <b>Documentation</b></td><td valign="top">
+
+`Markdown` · `Swagger / OpenAPI` · `Mermaid` · `PlantUML` (optional) · IEEE documentation format
 
 </td></tr>
 </table>
@@ -481,6 +529,9 @@ AECIDS separates infrastructure into independent layers to simplify deployment, 
 | PostgreSQL in the cloud | Scalable analytical storage |
 | FastAPI | High-performance asynchronous API layer |
 | TreeSHAP | Exact explainability for tree-based ensembles |
+| REST over HTTPS for Edge↔Cloud | Simple, secure, firewall-friendly transport for escalated flows |
+| WebSocket for the dashboard only | Real-time SOC updates without adding a broker to the Edge↔Cloud path |
+| Raspberry Pi 5 as target hardware | Realistic, affordable stand-in for an industrial IoT gateway |
 
 <div align="right"><sub><a href="#aecids">⬆ back to top</a></sub></div>
 
@@ -495,8 +546,8 @@ AECIDS separates infrastructure into independent layers to simplify deployment, 
 ```text
 AECIDS
 ├── backend/            FastAPI services — routers, calibration, explainability, database
-├── edge-agent/          Edge runtime — inference, calibration, MQTT, local storage
-├── frontend/            React + TypeScript SOC dashboard
+├── edge-agent/          Edge runtime — inference, calibration, REST client, local storage
+├── frontend/            React + TypeScript + Vite SOC dashboard
 ├── models/              Trained LightGBM / XGBoost artifacts
 ├── datasets/            Training, validation, and test data
 ├── docs/                Architecture notes, diagrams, research material
@@ -510,8 +561,8 @@ AECIDS
 
 <table>
 <tr><td width="18%"><code>backend/</code></td><td>Asynchronous FastAPI services: API routers, confidence calibration, TreeSHAP explainability, and the PostgreSQL data layer.</td></tr>
-<tr><td><code>edge-agent/</code></td><td>The ARM64 runtime — ONNX inference, calibration, MQTT client, SQLite-backed offline queue, and local monitoring.</td></tr>
-<tr><td><code>frontend/</code></td><td>The SOC dashboard — components, pages, hooks, and services for the React/TypeScript UI.</td></tr>
+<tr><td><code>edge-agent/</code></td><td>The Raspberry Pi 5 runtime — packet capture, ONNX inference, calibration, REST client, SQLite-backed offline queue, and local monitoring.</td></tr>
+<tr><td><code>frontend/</code></td><td>The SOC dashboard — components, pages, hooks, and services for the React/TypeScript/Vite UI.</td></tr>
 <tr><td><code>models/</code></td><td>Serialized edge and cloud model artifacts.</td></tr>
 <tr><td><code>datasets/</code></td><td>Data used for training and evaluation.</td></tr>
 <tr><td><code>docs/</code></td><td>Architecture references, research notes, and image assets.</td></tr>
@@ -591,9 +642,10 @@ The application is configured entirely through environment variables.
 |---|---|
 | `DATABASE_URL` | PostgreSQL connection string |
 | `SQLITE_PATH` | Edge database path |
-| `MQTT_HOST` | MQTT broker host |
-| `MQTT_PORT` | MQTT broker port |
-| `SECRET_KEY` | Application secret |
+| `CLOUD_API_URL` | Cloud REST API base URL (edge → cloud escalation) |
+| `SECRET_KEY` | Application secret (JWT signing) |
+| `JWT_ALGORITHM` | JWT signing algorithm |
+| `CORS_ORIGINS` | Allowed dashboard origins |
 | `MODEL_PATH` | ONNX model location |
 | `THRESHOLD` | Initial routing threshold |
 
@@ -617,8 +669,9 @@ The application is configured entirely through environment variables.
 | Method | Endpoint | Description |
 |---|---|---|
 | `GET` | `/health` | Service health |
+| `POST` | `/auth/login` | JWT authentication |
 | `POST` | `/predict` | Edge prediction |
-| `POST` | `/cloud/predict` | Cloud inference |
+| `POST` | `/cloud/predict` | Cloud inference (REST, HTTPS) |
 | `GET` | `/metrics` | Runtime metrics |
 | `GET` | `/threshold` | Current routing threshold |
 | `POST` | `/threshold` | Update routing threshold |
@@ -633,6 +686,28 @@ The application is configured entirely through environment variables.
 | `/ws/alerts` | Alert streaming |
 | `/ws/status` | Gateway health |
 | `/ws/logs` | Runtime logs |
+
+<div align="right"><sub><a href="#aecids">⬆ back to top</a></sub></div>
+
+<br/>
+
+---
+
+<br/>
+
+## Security
+
+Access to the API and dashboard is governed by the following controls:
+
+<table>
+<tr><td width="26%">🔑&nbsp; <b>JWT Authentication</b></td><td>Stateless token-based auth for all protected endpoints</td></tr>
+<tr><td>🔒&nbsp; <b>Password Hashing</b></td><td>Credentials are never stored in plaintext</td></tr>
+<tr><td>🌐&nbsp; <b>HTTPS</b></td><td>All Edge↔Cloud and Dashboard↔Cloud traffic is encrypted in transit</td></tr>
+<tr><td>🗝️&nbsp; <b>API Key Protection</b></td><td>Service-to-service calls require a valid API key</td></tr>
+<tr><td>✅&nbsp; <b>Input Validation</b></td><td>Pydantic models validate every request payload</td></tr>
+<tr><td>👥&nbsp; <b>Role-Based Access Control</b></td><td>Dashboard permissions scale with the analyst's role</td></tr>
+<tr><td>🚧&nbsp; <b>CORS Configuration</b></td><td>Explicit allow-list restricts which origins can call the API</td></tr>
+</table>
 
 <div align="right"><sub><a href="#aecids">⬆ back to top</a></sub></div>
 
