@@ -1,10 +1,10 @@
 <div align="center">
 
-<img src="./docs/images/vit_white_logo-scaled.jpg" width="280" alt="Vishwakarma Institute of Technology"/>
+<img src="./docs/images/vit_white_logo-scaled.jpg" width="260" alt="Vishwakarma Institute of Technology"/>
 
-<br/><br/>
+&nbsp;&nbsp;&nbsp;
 
-<img src="./docs/images/aecids-logo.jpg" width="120" alt="AECIDS"/>
+<img src="./docs/images/aecids-logo.jpg" width="100" alt="AECIDS"/>
 
 <br/><br/>
 
@@ -12,52 +12,43 @@
 
 ### Adaptive Explainable Edge–Cloud Intrusion Detection System
 
-Confidence-calibrated intelligent routing for resource-constrained IoT networks.
-
-<sub>Research Project · Engineering Design &amp; Innovation (EDI) · Smart Kopargaon Hackathon · 2026–27</sub>
+**Confidence-calibrated intelligent routing for resource-constrained IoT networks**
 
 <br/>
 
-![Python](https://img.shields.io/badge/Python-3.11-000000?style=flat-square&logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-000000?style=flat-square&logo=fastapi&logoColor=white)
-![React](https://img.shields.io/badge/React-18-000000?style=flat-square&logo=react&logoColor=white)
-![ONNX](https://img.shields.io/badge/ONNX_Runtime-000000?style=flat-square&logo=onnx&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-000000?style=flat-square&logo=docker&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-000000?style=flat-square)
-![Status](https://img.shields.io/badge/Status-Active_Development-333333?style=flat-square)
+<sub>Research Project&nbsp; · &nbsp;Engineering Design &amp; Innovation (EDI)&nbsp; · &nbsp;Smart Kopargaon Hackathon&nbsp; · &nbsp;2026–27</sub>
+
+<br/><br/>
+
+<!-- Tech badges — color-coded by layer -->
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009485?style=for-the-badge&logo=fastapi&logoColor=white)
+![React](https://img.shields.io/badge/React-18-149ECA?style=for-the-badge&logo=react&logoColor=white)
+![ONNX](https://img.shields.io/badge/ONNX_Runtime-6E4AFF?style=for-the-badge&logo=onnx&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-1D63ED?style=for-the-badge&logo=docker&logoColor=white)
+
+<!-- Status badges -->
+![License](https://img.shields.io/badge/License-MIT-6B7280?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Active_Development-F59E0B?style=flat-square)
+![PRs](https://img.shields.io/badge/PRs-Welcome-22C55E?style=flat-square)
 
 <br/>
 
-<table>
-<tr>
-<td align="center" width="16.6%"><b>67%</b><br/><sub>Overall progress</sub></td>
-<td align="center" width="16.6%"><b>4</b><br/><sub>Cooperative layers</sub></td>
-<td align="center" width="16.6%"><b>&lt; 2 ms</b><br/><sub>Edge target latency</sub></td>
-<td align="center" width="16.6%"><b>&lt; 45 MB</b><br/><sub>Edge memory budget</sub></td>
-<td align="center" width="16.6%"><b>2</b><br/><sub>Inference tiers</sub></td>
-<td align="center" width="16.6%"><b>2026–27</b><br/><sub>Academic year</sub></td>
-</tr>
-</table>
-
-<br/>
-
-**[Overview](#overview)** &nbsp;·&nbsp;
-**[Problem](#problem-statement)** &nbsp;·&nbsp;
-**[Solution](#solution-overview)** &nbsp;·&nbsp;
-**[Architecture](#architecture)** &nbsp;·&nbsp;
-**[Principles](#engineering-principles)** &nbsp;·&nbsp;
-**[Methodology](#research-methodology)** &nbsp;·&nbsp;
-**[Stack](#technology-stack)** &nbsp;·&nbsp;
-**[Installation](#installation)** &nbsp;·&nbsp;
-**[API](#api-reference)** &nbsp;·&nbsp;
-**[SOC](#security-operations-center)** &nbsp;·&nbsp;
-**[Roadmap](#roadmap)**
+<p>
+<a href="#overview"><b>Overview</b></a> &nbsp;&nbsp;•&nbsp;&nbsp;
+<a href="#architecture"><b>Architecture</b></a> &nbsp;&nbsp;•&nbsp;&nbsp;
+<a href="#engineering-principles"><b>Principles</b></a> &nbsp;&nbsp;•&nbsp;&nbsp;
+<a href="#research-methodology"><b>Methodology</b></a> &nbsp;&nbsp;•&nbsp;&nbsp;
+<a href="#installation"><b>Installation</b></a> &nbsp;&nbsp;•&nbsp;&nbsp;
+<a href="#api-reference"><b>API</b></a> &nbsp;&nbsp;•&nbsp;&nbsp;
+<a href="#roadmap"><b>Roadmap</b></a>
+</p>
 
 </div>
 
 <br/>
 
----
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.gif" width="100%" height="4px"/>
 
 <br/>
 
@@ -75,57 +66,49 @@ It combines lightweight edge inference, confidence-calibrated routing, cloud-ass
 > This repository is under active engineering development. Backend, edge runtime, and dashboard are being implemented in parallel; experimental validation follows hardware integration.
 
 <table>
-<tr><td width="60%" valign="top">
+<tr>
+<td width="42%" valign="top">
 
-**◆ Complete**
+**✅ Complete**
 Literature survey · System architecture · Research methodology · Software design specification
 
-**◆ In progress**
+**🔧 In progress**
 Backend services · Edge runtime · SOC dashboard
 
-**◆ Pending**
+**📋 Pending**
 Experimental evaluation · Hardware validation
 
-</td><td width="40%" valign="top">
+</td>
+<td width="58%" valign="top">
 
-```text
-Research           ████████████████████ 100%
-Architecture        ████████████████████ 100%
-Methodology         ████████████████████ 100%
-Design Spec         ████████████████████ 100%
-Backend             ████████████░░░░░░░░  60%
-Edge Runtime        █████████░░░░░░░░░░░  45%
-SOC Dashboard       ██████████░░░░░░░░░░  50%
-Evaluation          ░░░░░░░░░░░░░░░░░░░░   0%
-```
+| Track | Progress |
+|---|---|
+| Research | `████████████████████` 100% |
+| Architecture | `████████████████████` 100% |
+| Methodology | `████████████████████` 100% |
+| Design Spec | `████████████████████` 100% |
+| Backend | `████████████░░░░░░░░` 60% |
+| Edge Runtime | `█████████░░░░░░░░░░░` 45% |
+| SOC Dashboard | `██████████░░░░░░░░░░` 50% |
+| Evaluation | `░░░░░░░░░░░░░░░░░░░░` 0% |
 
-</td></tr>
+</td>
+</tr>
 </table>
 
 <br/>
 
 ### Team
 
-<table>
-<tr>
-<td align="center" width="25%">
-<b>Atharva Vavhal</b><br/>
-<sub>Team Leader</sub>
-</td>
-<td align="center" width="25%">
-<b>Vedika Mehta</b><br/>
-<sub>Team Member</sub>
-</td>
-<td align="center" width="25%">
-<b>Swapnil Pawar</b><br/>
-<sub>Team Member</sub>
-</td>
-<td align="center" width="25%">
-<b>Janhavi Waychal</b><br/>
-<sub>Team Member</sub>
-</td>
-</tr>
-</table>
+<div align="center">
+
+| | | | |
+|:---:|:---:|:---:|:---:|
+| 👤 | 👤 | 👤 | 👤 |
+| **Atharva Vavhal** | **Vedika Mehta** | **Swapnil Pawar** | **Janhavi Waychal** |
+| `Team Leader` | `Team Member` | `Team Member` | `Team Member` |
+
+</div>
 
 <div align="center">
 <sub>
@@ -134,6 +117,8 @@ Evaluation          ░░░░░░░░░░░░░░░░░░░░
 
 </sub>
 </div>
+
+<div align="right"><sub><a href="#aecids">⬆ back to top</a></sub></div>
 
 <br/>
 
@@ -149,14 +134,14 @@ Intrusion detection systems today are forced into one of two compromises.
 <tr>
 <td width="50%" valign="top">
 
-**▪ Edge-only**
+#### 🔹 Edge-only
 
 Extremely low latency, but constrained by memory, compute, and model complexity — weak against sophisticated, polymorphic, or previously unseen attacks.
 
 </td>
 <td width="50%" valign="top">
 
-**▪ Cloud-only**
+#### 🔹 Cloud-only
 
 Far greater analytical capacity, but every flow must cross the network first — adding latency, WAN load, infrastructure cost, and a dependency on connectivity.
 
@@ -176,15 +161,15 @@ Far greater analytical capacity, but every flow must cross the network first —
 
 AECIDS introduces a hierarchical Edge–Cloud inference pipeline governed by confidence-calibrated routing. Every flow is first analyzed locally by a lightweight model. Its calibrated confidence score decides whether the prediction is trustworthy enough to act on immediately, or uncertain enough to escalate for deeper cloud analysis.
 
-Only uncertain traffic ever leaves the device — bandwidth and cloud cost scale with genuine ambiguity, not with total traffic volume.
+> Only uncertain traffic ever leaves the device — bandwidth and cloud cost scale with genuine ambiguity, not with total traffic volume.
 
 <br/>
 
 <table>
-<tr><td width="26%"><b>◆ Edge Intelligence</b></td><td>Real-time lightweight intrusion detection</td></tr>
-<tr><td><b>◆ Confidence Calibration</b></td><td>Reliability estimation of every edge prediction</td></tr>
-<tr><td><b>◆ Cloud Intelligence</b></td><td>High-capacity secondary inference for uncertain flows</td></tr>
-<tr><td><b>◆ Explainable Adaptation</b></td><td>Dynamic optimization of the routing threshold</td></tr>
+<tr><td width="26%">🧠&nbsp; <b>Edge Intelligence</b></td><td>Real-time lightweight intrusion detection</td></tr>
+<tr><td>🎯&nbsp; <b>Confidence Calibration</b></td><td>Reliability estimation of every edge prediction</td></tr>
+<tr><td>☁️&nbsp; <b>Cloud Intelligence</b></td><td>High-capacity secondary inference for uncertain flows</td></tr>
+<tr><td>🔍&nbsp; <b>Explainable Adaptation</b></td><td>Dynamic optimization of the routing threshold</td></tr>
 </table>
 
 ```mermaid
@@ -198,6 +183,8 @@ graph LR
     G -.-> C
 ```
 
+<div align="right"><sub><a href="#aecids">⬆ back to top</a></sub></div>
+
 <br/>
 
 ---
@@ -207,11 +194,11 @@ graph LR
 ## Research Objectives
 
 <table>
-<tr><td width="30%"><b>Edge efficiency</b></td><td>Low-latency detection on ARM64 gateways using lightweight models</td></tr>
-<tr><td><b>Confidence-aware routing</b></td><td>Escalate to cloud only when calibrated confidence is insufficient</td></tr>
-<tr><td><b>Explainable security</b></td><td>Interpretable predictions via exact TreeSHAP attribution</td></tr>
-<tr><td><b>Adaptive intelligence</b></td><td>Routing behavior improves continuously through explanation-driven feedback</td></tr>
-<tr><td><b>Operational resilience</b></td><td>Reliable operation through intermittent cloud connectivity</td></tr>
+<tr><td width="28%">🟢&nbsp; <b>Edge efficiency</b></td><td>Low-latency detection on ARM64 gateways using lightweight models</td></tr>
+<tr><td>🟢&nbsp; <b>Confidence-aware routing</b></td><td>Escalate to cloud only when calibrated confidence is insufficient</td></tr>
+<tr><td>🟢&nbsp; <b>Explainable security</b></td><td>Interpretable predictions via exact TreeSHAP attribution</td></tr>
+<tr><td>🟢&nbsp; <b>Adaptive intelligence</b></td><td>Routing behavior improves continuously through explanation-driven feedback</td></tr>
+<tr><td>🟢&nbsp; <b>Operational resilience</b></td><td>Reliable operation through intermittent cloud connectivity</td></tr>
 </table>
 
 <br/>
@@ -222,11 +209,13 @@ Unlike conventional IDS pipelines that statically partition work between edge an
 
 | Contribution | What it does |
 |---|---|
-| **Confidence-Calibrated Routing** | Routes each flow based on calibrated posterior confidence, not raw probability |
-| **Explainable Adaptation Engine** | TreeSHAP attributions continuously retune the routing threshold |
-| **Hybrid Inference Architecture** | Lightweight edge model paired with a high-capacity cloud ensemble |
-| **Edge-Oriented Deployment** | Purpose-built for Raspberry Pi and industrial ARM64 gateways |
-| **Explainability Feedback Loop** | Feature-attribution drift becomes an optimization signal, not just a report |
+| 🧩 **Confidence-Calibrated Routing** | Routes each flow based on calibrated posterior confidence, not raw probability |
+| 🧠 **Explainable Adaptation Engine** | TreeSHAP attributions continuously retune the routing threshold |
+| ⚙️ **Hybrid Inference Architecture** | Lightweight edge model paired with a high-capacity cloud ensemble |
+| 📟 **Edge-Oriented Deployment** | Purpose-built for Raspberry Pi and industrial ARM64 gateways |
+| 🔁 **Explainability Feedback Loop** | Feature-attribution drift becomes an optimization signal, not just a report |
+
+<div align="right"><sub><a href="#aecids">⬆ back to top</a></sub></div>
 
 <br/>
 
@@ -258,7 +247,9 @@ graph TD
 
 <br/>
 
-### Routing state machine
+<details open>
+<summary><b>Routing state machine</b></summary>
+<br/>
 
 ```mermaid
 stateDiagram-v2
@@ -273,9 +264,11 @@ stateDiagram-v2
     LocalDecision --> [*]
 ```
 
-<br/>
+</details>
 
-### Request sequence
+<details>
+<summary><b>Request sequence</b></summary>
+<br/>
 
 ```mermaid
 sequenceDiagram
@@ -300,9 +293,11 @@ sequenceDiagram
     end
 ```
 
-<br/>
+</details>
 
-### Deployment topology
+<details>
+<summary><b>Deployment topology</b></summary>
+<br/>
 
 ```mermaid
 graph LR
@@ -319,32 +314,36 @@ graph LR
     GW -->|MQTT| API
 ```
 
+</details>
+
 <br/>
 
 ### Core components
 
 <table>
-<tr><td width="22%"><b>Edge Intelligence</b></td><td>
+<tr><td width="22%">🧠&nbsp; <b>Edge Intelligence</b></td><td>
 
 ONNX-quantized LightGBM on ARM64 hardware. Target latency **&lt; 2 ms**, memory budget **&lt; 45 MB**, persisted locally through SQLite.
 
 </td></tr>
-<tr><td><b>Confidence Calibration</b></td><td>
+<tr><td>🎯&nbsp; <b>Confidence Calibration</b></td><td>
 
 Post-hoc calibration — Temperature Scaling and Platt Scaling — converts raw model output into a reliable posterior before any routing decision is made.
 
 </td></tr>
-<tr><td><b>Cloud Intelligence</b></td><td>
+<tr><td>☁️&nbsp; <b>Cloud Intelligence</b></td><td>
 
 FastAPI-fronted XGBoost ensemble handles the flows the edge model is uncertain about, communicating over MQTT/WebSocket and persisting to PostgreSQL.
 
 </td></tr>
-<tr><td><b>Explainable Adaptation</b></td><td>
+<tr><td>🔍&nbsp; <b>Explainable Adaptation</b></td><td>
 
 Every cloud prediction produces exact TreeSHAP attributions. These aren't just displayed — feature-importance drift feeds directly back into the routing threshold controller, closing the loop.
 
 </td></tr>
 </table>
+
+<div align="right"><sub><a href="#aecids">⬆ back to top</a></sub></div>
 
 <br/>
 
@@ -357,11 +356,11 @@ Every cloud prediction produces exact TreeSHAP attributions. These aren't just d
 AECIDS is built on five non-negotiable architectural principles.
 
 <table>
-<tr><td width="26%"><b>Edge First</b></td><td>Every packet is evaluated locally before any cloud escalation is considered.</td></tr>
-<tr><td><b>Confidence Before Complexity</b></td><td>Cloud inference triggers only when calibrated confidence falls below the adaptive threshold.</td></tr>
-<tr><td><b>Explain Every Decision</b></td><td>Every cloud prediction carries an exact TreeSHAP feature attribution.</td></tr>
-<tr><td><b>Adaptive Intelligence</b></td><td>Explainability output continuously improves routing behavior through closed-loop optimization.</td></tr>
-<tr><td><b>Offline Resilience</b></td><td>Edge gateways keep operating through intermittent or total cloud outages via local inference and SQLite persistence.</td></tr>
+<tr><td width="26%">1️⃣&nbsp; <b>Edge First</b></td><td>Every packet is evaluated locally before any cloud escalation is considered.</td></tr>
+<tr><td>2️⃣&nbsp; <b>Confidence Before Complexity</b></td><td>Cloud inference triggers only when calibrated confidence falls below the adaptive threshold.</td></tr>
+<tr><td>3️⃣&nbsp; <b>Explain Every Decision</b></td><td>Every cloud prediction carries an exact TreeSHAP feature attribution.</td></tr>
+<tr><td>4️⃣&nbsp; <b>Adaptive Intelligence</b></td><td>Explainability output continuously improves routing behavior through closed-loop optimization.</td></tr>
+<tr><td>5️⃣&nbsp; <b>Offline Resilience</b></td><td>Edge gateways keep operating through intermittent or total cloud outages via local inference and SQLite persistence.</td></tr>
 </table>
 
 > [!NOTE]
@@ -370,7 +369,7 @@ AECIDS is built on five non-negotiable architectural principles.
 <br/>
 
 <details>
-<summary><b>Architectural invariants</b></summary>
+<summary><b>📐 Architectural invariants</b></summary>
 <br/>
 
 - Every network flow is evaluated at the edge before cloud escalation
@@ -384,6 +383,8 @@ AECIDS is built on five non-negotiable architectural principles.
 
 </details>
 
+<div align="right"><sub><a href="#aecids">⬆ back to top</a></sub></div>
+
 <br/>
 
 ---
@@ -394,12 +395,12 @@ AECIDS is built on five non-negotiable architectural principles.
 
 Every flow moves through four sequential stages — computational cost scales with uncertainty, not with traffic volume.
 
-```text
-1  Edge Inference             lightweight local prediction
-2  Confidence Calibration     reliability estimate of that prediction
-3  Cloud Escalation           deep inference for low-confidence flows only
-4  Explainable Feedback       TreeSHAP output retunes the routing threshold
-```
+<table>
+<tr><td width="6%" align="center"><b>1</b></td><td width="34%"><b>Edge Inference</b></td><td>lightweight local prediction</td></tr>
+<tr><td align="center"><b>2</b></td><td><b>Confidence Calibration</b></td><td>reliability estimate of that prediction</td></tr>
+<tr><td align="center"><b>3</b></td><td><b>Cloud Escalation</b></td><td>deep inference for low-confidence flows only</td></tr>
+<tr><td align="center"><b>4</b></td><td><b>Explainable Feedback</b></td><td>TreeSHAP output retunes the routing threshold</td></tr>
+</table>
 
 <br/>
 
@@ -427,6 +428,8 @@ $$f(x) = \phi_0 + \sum_{i=1}^{M} \phi_i$$
 
 where `φ₀` is the expected prediction and `φᵢ` is feature `i`'s contribution.
 
+<div align="right"><sub><a href="#aecids">⬆ back to top</a></sub></div>
+
 <br/>
 
 ---
@@ -438,29 +441,29 @@ where `φ₀` is the expected prediction and `φᵢ` is feature `i`'s contributi
 AECIDS separates infrastructure into independent layers to simplify deployment, scaling, and maintenance.
 
 <table>
-<tr><td width="20%" valign="top"><b>Machine Learning</b></td><td valign="top">
+<tr><td width="20%" valign="top">🤖&nbsp; <b>Machine Learning</b></td><td valign="top">
 
-LightGBM (edge) · XGBoost (cloud) · TreeSHAP (explainability) · ONNX Runtime (embedded execution)
-
-</td></tr>
-<tr><td valign="top"><b>Backend</b></td><td valign="top">
-
-FastAPI · Python 3.11 · Uvicorn · Pydantic · REST + WebSocket · MQTT
+`LightGBM` (edge) · `XGBoost` (cloud) · `TreeSHAP` (explainability) · `ONNX Runtime` (embedded execution)
 
 </td></tr>
-<tr><td valign="top"><b>Frontend</b></td><td valign="top">
+<tr><td valign="top">⚙️&nbsp; <b>Backend</b></td><td valign="top">
 
-React 18 · TypeScript · TailwindCSS · Recharts · Lucide
-
-</td></tr>
-<tr><td valign="top"><b>Storage</b></td><td valign="top">
-
-SQLite (edge queue) · PostgreSQL 16+ (security data lake)
+`FastAPI` · `Python 3.11` · `Uvicorn` · `Pydantic` · `REST + WebSocket` · `MQTT`
 
 </td></tr>
-<tr><td valign="top"><b>Infrastructure</b></td><td valign="top">
+<tr><td valign="top">🖥️&nbsp; <b>Frontend</b></td><td valign="top">
 
-Docker · Docker Compose · Raspberry Pi (ARM64) · Industrial Edge Gateway
+`React 18` · `TypeScript` · `TailwindCSS` · `Recharts` · `Lucide`
+
+</td></tr>
+<tr><td valign="top">🗄️&nbsp; <b>Storage</b></td><td valign="top">
+
+`SQLite` (edge queue) · `PostgreSQL 16+` (security data lake)
+
+</td></tr>
+<tr><td valign="top">🐳&nbsp; <b>Infrastructure</b></td><td valign="top">
+
+`Docker` · `Docker Compose` · `Raspberry Pi (ARM64)` · `Industrial Edge Gateway`
 
 </td></tr>
 </table>
@@ -478,6 +481,8 @@ Docker · Docker Compose · Raspberry Pi (ARM64) · Industrial Edge Gateway
 | PostgreSQL in the cloud | Scalable analytical storage |
 | FastAPI | High-performance asynchronous API layer |
 | TreeSHAP | Exact explainability for tree-based ensembles |
+
+<div align="right"><sub><a href="#aecids">⬆ back to top</a></sub></div>
 
 <br/>
 
@@ -512,6 +517,8 @@ AECIDS
 <tr><td><code>docs/</code></td><td>Architecture references, research notes, and image assets.</td></tr>
 </table>
 
+<div align="right"><sub><a href="#aecids">⬆ back to top</a></sub></div>
+
 <br/>
 
 ---
@@ -543,10 +550,11 @@ docker compose up --build
 
 <br/>
 
-### Run components individually
+<details open>
+<summary><b>Run components individually</b></summary>
+<br/>
 
-<table>
-<tr><td width="18%" valign="top"><b>Backend</b></td><td>
+**Backend**
 
 ```bash
 cd backend
@@ -556,8 +564,7 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-</td></tr>
-<tr><td valign="top"><b>Frontend</b></td><td>
+**Frontend**
 
 ```bash
 cd frontend
@@ -565,16 +572,14 @@ npm install
 npm run dev
 ```
 
-</td></tr>
-<tr><td valign="top"><b>Edge runtime</b></td><td>
+**Edge runtime**
 
 ```bash
 cd edge-agent
 python main.py
 ```
 
-</td></tr>
-</table>
+</details>
 
 <br/>
 
@@ -591,6 +596,8 @@ The application is configured entirely through environment variables.
 | `SECRET_KEY` | Application secret |
 | `MODEL_PATH` | ONNX model location |
 | `THRESHOLD` | Initial routing threshold |
+
+<div align="right"><sub><a href="#aecids">⬆ back to top</a></sub></div>
 
 <br/>
 
@@ -627,6 +634,8 @@ The application is configured entirely through environment variables.
 | `/ws/status` | Gateway health |
 | `/ws/logs` | Runtime logs |
 
+<div align="right"><sub><a href="#aecids">⬆ back to top</a></sub></div>
+
 <br/>
 
 ---
@@ -638,13 +647,13 @@ The application is configured entirely through environment variables.
 The SOC dashboard centralizes monitoring of edge gateways, cloud inference, routing behavior, and explainability results — designed for operational clarity over visual complexity.
 
 <table>
-<tr><td width="22%"><b>Overview</b></td><td>High-level system health and traffic summary</td></tr>
-<tr><td><b>Threat Feed</b></td><td>Real-time intrusion events</td></tr>
-<tr><td><b>Edge Gateways</b></td><td>Connected gateway monitoring</td></tr>
-<tr><td><b>Cloud Analytics</b></td><td>Secondary inference statistics</td></tr>
-<tr><td><b>Explainability</b></td><td>TreeSHAP feature attribution</td></tr>
-<tr><td><b>Threshold Monitor</b></td><td>Adaptive routing visualization</td></tr>
-<tr><td><b>Audit Logs</b></td><td>Historical event timeline</td></tr>
+<tr><td width="22%">📊&nbsp; <b>Overview</b></td><td>High-level system health and traffic summary</td></tr>
+<tr><td>🚨&nbsp; <b>Threat Feed</b></td><td>Real-time intrusion events</td></tr>
+<tr><td>📡&nbsp; <b>Edge Gateways</b></td><td>Connected gateway monitoring</td></tr>
+<tr><td>☁️&nbsp; <b>Cloud Analytics</b></td><td>Secondary inference statistics</td></tr>
+<tr><td>🔍&nbsp; <b>Explainability</b></td><td>TreeSHAP feature attribution</td></tr>
+<tr><td>🎚️&nbsp; <b>Threshold Monitor</b></td><td>Adaptive routing visualization</td></tr>
+<tr><td>📜&nbsp; <b>Audit Logs</b></td><td>Historical event timeline</td></tr>
 </table>
 
 <br/>
@@ -664,6 +673,8 @@ The SOC dashboard centralizes monitoring of edge gateways, cloud inference, rout
 </table>
 
 </div>
+
+<div align="right"><sub><a href="#aecids">⬆ back to top</a></sub></div>
 
 <br/>
 
@@ -719,6 +730,8 @@ graph LR
 
 <sub>All experiments — edge and cloud benchmarking, hardware validation, routing and explainability analysis, comparative study — are currently **planned**, pending hardware-in-the-loop evaluation.</sub>
 
+<div align="right"><sub><a href="#aecids">⬆ back to top</a></sub></div>
+
 <br/>
 
 ---
@@ -751,11 +764,11 @@ The project is deliberately shaped by practical deployment limits.
 | Research completion | ✅ Complete |
 | Architecture finalization | ✅ Complete |
 | Software design specification | ✅ Complete |
-| Backend services | 🔶 In progress |
-| Edge runtime | 🔶 In progress |
-| SOC dashboard | 🔶 In progress |
-| Experimental validation | ⬜ Planned |
-| Research publication | ⬜ Planned |
+| Backend services | 🔧 In progress |
+| Edge runtime | 🔧 In progress |
+| SOC dashboard | 🔧 In progress |
+| Experimental validation | 📋 Planned |
+| Research publication | 📋 Planned |
 
 <br/>
 
@@ -778,6 +791,8 @@ The project is deliberately shaped by practical deployment limits.
 
 </td></tr>
 </table>
+
+<div align="right"><sub><a href="#aecids">⬆ back to top</a></sub></div>
 
 <br/>
 
@@ -820,6 +835,10 @@ A formal BibTeX citation will be added once the accompanying research paper is p
 <br/>
 
 <div align="center">
+
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.gif" width="100%" height="4px"/>
+
+<br/><br/>
 
 **AECIDS** — Adaptive Explainable Edge–Cloud Intrusion Detection System
 
