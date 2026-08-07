@@ -1,10 +1,10 @@
 <div align="center">
 
-<img src="http://i.ibb.co/zVLVb6VB/vit-logo-dark.png" width="640" alt="Vishwakarma Institute of Technology, Pune — NAAC A++"/>
+<img src="https://www.vishwakarma-group.com/images/logos/VIT-logo.png" width="640" alt="Vishwakarma Institute of Technology, Pune — NAAC A++"/>
 
 <br/><br/>
 
-<img src="https://i.ibb.co/0RR94pCK/Whats-App-Image-2026-08-08-at-00-13-15.jpg" width="300" alt="AECIDS"/>
+<img src="https://i.ibb.co/0RR94pCK/Whats-App-Image-2026-08-08-at-00-13-15.jpg" width="150" alt="AECIDS"/>
 
 <br/>
 
