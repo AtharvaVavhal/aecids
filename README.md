@@ -1,59 +1,59 @@
 <div align="center">
 
+<img src="https://placehold.co/120x120/080808/58a6ff.png?text=VIT&font=Montserrat" alt="VIT Pune Logo" width="90" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://placehold.co/120x120/080808/00E676.png?text=AECIDS&font=Montserrat" alt="AECIDS Logo" width="90" />
+
 # 🛡️ AECIDS
 ### Adaptive Explainable Edge–Cloud Intrusion Detection System using Confidence-Calibrated Intelligent Routing for Resource-Constrained IoT Networks
 
-[![CI/CD Pipeline](https://img.shields.io/badge/build-passing-brightgreen?style=for-the-badge&logo=github)](https://github.com/your-username/AECIDS/actions)
-[![Python Version](https://img.shields.io/badge/python-3.11%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Status: Under Active Development](https://img.shields.io/badge/Status-Under%20Active%20Development-FFAB00?style=for-the-badge)](https://github.com/AtharvaVavhal/AECIDS)
+[![Project: EDI 2026–27](https://img.shields.io/badge/Project-EDI%202026--27-2979FF?style=for-the-badge)](http://www.vit.edu/)
+[![Hackathon: Smart Kopargaon](https://img.shields.io/badge/Hackathon-Smart%20Kopargaon-00E676?style=for-the-badge)](#)
+[![Research: Undergraduate](https://img.shields.io/badge/Research-Undergraduate%20Project-9C27B0?style=for-the-badge)](#-about-project)
+
+[![Python](https://img.shields.io/badge/Python-3.11%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110%2B-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![React](https://img.shields.io/badge/React-18.0%2B-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
-[![Docker Supported](https://img.shields.io/badge/docker-ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![Docker](https://img.shields.io/badge/Docker-Supported-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
+[![Raspberry Pi](https://img.shields.io/badge/Raspberry%20Pi-ARM64-C51A4A?style=for-the-badge&logo=raspberry-pi&logoColor=white)](https://www.raspberrypi.com/)
+
+[![IoT Security](https://img.shields.io/badge/Domain-IoT%20Security-D50000?style=for-the-badge)](#-problem-statement)
+[![Edge AI: LightGBM / ONNX](https://img.shields.io/badge/Edge%20AI-LightGBM%20%2F%20ONNX-FF6D00?style=for-the-badge)](#-technology-stack)
+[![Explainable AI: TreeSHAP](https://img.shields.io/badge/Explainable%20AI-TreeSHAP-00B0FF?style=for-the-badge)](#-research-methodology)
+[![Cloud AI: XGBoost](https://img.shields.io/badge/Cloud%20AI-XGBoost-00C853?style=for-the-badge)](#-technology-stack)
 
 ---
 
-![AECIDS Banner Placeholder](https://via.placeholder.com/1200x400/0d1117/58a6ff?text=AECIDS+%E2%80%A2+Next-Gen+Edge-Cloud+IoT+Intrusion+Detection)
+![AECIDS Hero Banner](https://placehold.co/1200x380/080808/58a6ff.png?text=AECIDS+%E2%80%A2+Next-Generation+Edge%E2%80%93Cloud+IoT+Intrusion+Detection&font=Montserrat)
 
-*An industry-grade, AI-powered network intrusion detection architecture that dynamically balances latency, cloud inference cost, and explanation-driven accuracy across edge nodes and cloud clusters.*
+*A collaborative undergraduate engineering research initiative designed to dynamically balance inference latency, cloud processing costs, and explanation-driven accuracy across resource-constrained edge gateways and enterprise cloud clusters.*
 
-[Key Features](#-main-features) •
+[About](#-about-project) •
+[Team](#-project-team) •
 [Architecture](#-system-architecture) •
-[Research Paper](#-research-paper) •
-[Benchmarks](#-performance-benchmarks) •
-[Quickstart](#-installation--quickstart) •
-[API Reference](#-api-reference)
+[Methodology](#-research-methodology) •
+[Tech Stack](#-technology-stack) •
+[Benchmarks](#-performance-placeholders) •
+[Quickstart](#-installation) •
+[API](#-api-reference)
 
 </div>
 
 ---
 
-## 📖 Table of Contents
+## 🚧 Project Status & Current Progress
 
-- [Project Overview](#-project-overview)
-- [Main Features](#-main-features)
-- [System Architecture](#-system-architecture)
-  - [Intelligent Routing Flow](#1-intelligent-routing--adaptation-flow)
-  - [Deployment Architecture](#2-end-to-end-deployment-architecture)
-- [Research Contributions](#-research-contributions)
-- [Research Paper & Methodology](#-research-paper--methodology)
-- [Technology Stack](#-technology-stack)
-- [Performance Benchmarks](#-performance-benchmarks)
-- [Repository Structure](#-repository-structure)
-- [Installation & Quickstart](#-installation--quickstart)
-- [Usage & CLI](#-usage--cli)
-- [API Reference](#-api-reference)
-- [Screenshots & Visuals](#-screenshots--visuals)
-- [Roadmap](#-roadmap)
-- [Contributing](#-contributing)
-- [License & Citation](#-license--citation)
-- [Contact](#-contact)
+> [!IMPORTANT]
+> **AECIDS** is currently **Under Active Development** as part of an academic Engineering Design & Innovation (EDI) course and for submission to the **Smart Kopargaon Hackathon**. Core research, system architecture, and formal methodologies have been finalized; software implementation and empirical benchmark evaluations are actively underway.
 
----
-
-## 🌐 Project Overview
-
-Modern Internet of Things (IoT) deployments face a critical architectural dilemma:
-1. **Edge-only AI models** lack the parameter capacity to reliably catch sophisticated, zero-day, or adversarial network intrusions.
-2. **Cloud-only AI pipelines** introduce unacceptable latency, massive bandwidth overhead, and a single point of congestion for high-throughput IoT networks.
-
-**AECIDS** resolves this trade-off by introducing a **Confidence-Calibrated Intelligent Routing** mechanism combined with an **Explainable Adaptation Engine**.
+| Phase | Milestone | Stage Status |
+| :--- | :--- | :---: |
+| **01** | **Research & Literature Review** | Complete |
+| **02** | **System Architecture Formalization** | Complete |
+| **03** | **Mathematical Methodology & Routing Logic** | Complete |
+| **04** | **Software Design Specification (SDS)** | Complete |
+| **05** | **Cloud FastAPI Backend Development** | Active (`40%`) |
+| **06** | **Edge AI Agent & ONNX Runtime Pipeline** | Active (`30%`) |
+| **07** | **React / Tailwind SOC Dashboard UI** | Active (`20%`) |
+| **08** | **Hardware-in-the-Loop Benchmark Evaluation** | Scheduled (`0%`) |
