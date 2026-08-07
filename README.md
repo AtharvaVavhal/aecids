@@ -2,7 +2,7 @@
 
 <img src="https://www.vishwakarma-group.com/images/logos/VIT-logo.png" width="320" alt="Vishwakarma Institute of Technology, Pune — NAAC A++"/>
 
-<br/><br/>
+<br/>
 
 <img src="https://i.ibb.co/0RR94pCK/Whats-App-Image-2026-08-08-at-00-13-15.jpg" width="100" alt="AECIDS"/>
 
