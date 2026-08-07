@@ -6,10 +6,6 @@
 
 <img src="https://i.ibb.co/0RR94pCK/Whats-App-Image-2026-08-08-at-00-13-15.jpg" width="100" alt="AECIDS"/>
 
-
-
-
-
 # AECIDS
 
 ### Adaptive Explainable Edge–Cloud Intrusion Detection System
@@ -33,7 +29,7 @@
 
 <!-- Status badges -->
 ![License](https://img.shields.io/badge/License-MIT-6B7280?style=flat-square)
-![Status](https://img.shields.io/badge/Status-Active_Development-F59E0B?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Design_%26_Specification_Stage-F59E0B?style=flat-square)
 ![PRs](https://img.shields.io/badge/PRs-Welcome-22C55E?style=flat-square)
 
 <br/>
@@ -67,40 +63,35 @@ It combines lightweight edge inference, confidence-calibrated routing, cloud-ass
 
 <br/>
 
-### Status
+### Project Status &amp; Progress
 
 > [!IMPORTANT]
-> This repository is under active engineering development. Backend, edge runtime, and dashboard are being implemented in parallel; experimental validation follows hardware integration.
+> This project is at the **design and specification stage**. Architecture, research methodology, and the technical stack are frozen. No implementation code exists in the repository yet — statuses below reflect only what has actually been built, not what is planned.
 
 <table>
-<tr>
-<td width="42%" valign="top">
-
-**✅ Complete**
-Literature survey · System architecture · Research methodology · Software design specification
-
-**🔧 In progress**
-Backend services · Edge runtime · SOC dashboard
-
-**📋 Pending**
-Experimental evaluation · Hardware validation
-
-</td>
-<td width="58%" valign="top">
-
-| Track | Progress |
-|---|---|
-| Research | `████████████████████` 100% |
-| Architecture | `████████████████████` 100% |
-| Methodology | `████████████████████` 100% |
-| Design Spec | `████████████████████` 100% |
-| Backend | `████████████░░░░░░░░` 60% |
-| Edge Runtime | `█████████░░░░░░░░░░░` 45% |
-| SOC Dashboard | `██████████░░░░░░░░░░` 50% |
-| Evaluation | `░░░░░░░░░░░░░░░░░░░░` 0% |
-
-</td>
-</tr>
+<tr><td width="34%"><b>Module</b></td><td width="16%"><b>Status</b></td><td><b>Notes</b></td></tr>
+<tr><td>Literature Review</td><td>⬜ Not Started</td><td>No document in repo yet</td></tr>
+<tr><td>System Architecture</td><td>✅ Complete</td><td>Three-tier Edge/Cloud/Dashboard architecture frozen and diagrammed</td></tr>
+<tr><td>Research Methodology</td><td>✅ Complete</td><td>11-step workflow, calibration math, routing rule, TreeSHAP formulation frozen</td></tr>
+<tr><td>Software Design Spec (SDS)</td><td>⚠ Partially Implemented</td><td>Inputs exist (architecture, workflow, stack); no standalone SDS document yet</td></tr>
+<tr><td>Backend API</td><td>⬜ Not Started</td><td>No <code>backend/</code> code</td></tr>
+<tr><td>Authentication</td><td>⬜ Not Started</td><td>No auth code</td></tr>
+<tr><td>Database</td><td>⬜ Not Started</td><td>Schema named in docs; no migrations or DB code</td></tr>
+<tr><td>Edge Runtime</td><td>⬜ Not Started</td><td>No <code>edge-agent/</code> code</td></tr>
+<tr><td>Feature Extraction</td><td>⬜ Not Started</td><td>No code</td></tr>
+<tr><td>Edge AI Model</td><td>⬜ Not Started</td><td>Model choice specified (LightGBM + ONNX); untrained, unimplemented</td></tr>
+<tr><td>Confidence Calibration</td><td>⬜ Not Started</td><td>Method specified (Temperature Scaling + ECE); no code</td></tr>
+<tr><td>Intelligent Routing</td><td>⬜ Not Started</td><td>Rule specified; no code</td></tr>
+<tr><td>Cloud AI Model</td><td>⬜ Not Started</td><td>Model choice specified (XGBoost); untrained, unimplemented</td></tr>
+<tr><td>TreeSHAP Explainability</td><td>⬜ Not Started</td><td>No code</td></tr>
+<tr><td>Adaptation Engine</td><td>⬜ Not Started</td><td>Logic specified conceptually; no code</td></tr>
+<tr><td>REST API</td><td>⬜ Not Started</td><td>Endpoints listed in docs; no routes implemented</td></tr>
+<tr><td>Dashboard UI</td><td>⬜ Not Started</td><td>No <code>frontend/</code> code</td></tr>
+<tr><td>Deployment</td><td>⬜ Not Started</td><td>Topology specified; no Dockerfiles or compose file</td></tr>
+<tr><td>Docker</td><td>⬜ Not Started</td><td>No <code>docker/</code> directory or <code>docker-compose.yml</code></td></tr>
+<tr><td>Testing</td><td>⬜ Not Started</td><td>No <code>tests/</code> directory or test code</td></tr>
+<tr><td>Documentation</td><td>🟡 In Progress</td><td>README covers architecture, workflow, stack, and security; SDS/SRS/API docs still separate work</td></tr>
+<tr><td>Experimental Evaluation</td><td>⬜ Not Started</td><td>Blocked until edge and cloud models exist</td></tr>
 </table>
 
 <br/>
@@ -675,6 +666,9 @@ AECIDS separates infrastructure into independent layers to simplify deployment, 
 
 ## Repository Structure
 
+> [!NOTE]
+> This is the **planned** layout matching the frozen architecture — not all directories exist in the repository yet (see [Project Status & Progress](#project-status--progress)).
+
 ```text
 AECIDS
 ├── backend/            FastAPI services — routers, calibration, explainability, database
@@ -1025,12 +1019,12 @@ The project is deliberately shaped by practical deployment limits.
 |---|---|
 | Research completion | ✅ Complete |
 | Architecture finalization | ✅ Complete |
-| Software design specification | ✅ Complete |
-| Backend services | 🔧 In progress |
-| Edge runtime | 🔧 In progress |
-| SOC dashboard | 🔧 In progress |
-| Experimental validation | 📋 Planned |
-| Research publication | 📋 Planned |
+| Software design specification | ⚠ Partially Implemented |
+| Backend services | ⬜ Not Started |
+| Edge runtime | ⬜ Not Started |
+| SOC dashboard | ⬜ Not Started |
+| Experimental validation | ⏳ Planned |
+| Research publication | ⏳ Planned |
 
 <br/>
 
