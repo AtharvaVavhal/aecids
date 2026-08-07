@@ -8,6 +8,8 @@
 
 <br/>
 
+
+
 # AECIDS
 
 ### Adaptive Explainable Edge–Cloud Intrusion Detection System
@@ -39,11 +41,13 @@
 <p>
 <a href="#overview"><b>Overview</b></a> &nbsp;&nbsp;•&nbsp;&nbsp;
 <a href="#architecture"><b>Architecture</b></a> &nbsp;&nbsp;•&nbsp;&nbsp;
+<a href="#system-workflow"><b>Workflow</b></a> &nbsp;&nbsp;•&nbsp;&nbsp;
 <a href="#engineering-principles"><b>Principles</b></a> &nbsp;&nbsp;•&nbsp;&nbsp;
 <a href="#research-methodology"><b>Methodology</b></a> &nbsp;&nbsp;•&nbsp;&nbsp;
 <a href="#installation"><b>Installation</b></a> &nbsp;&nbsp;•&nbsp;&nbsp;
 <a href="#api-reference"><b>API</b></a> &nbsp;&nbsp;•&nbsp;&nbsp;
 <a href="#security"><b>Security</b></a> &nbsp;&nbsp;•&nbsp;&nbsp;
+<a href="#monitoring"><b>Monitoring</b></a> &nbsp;&nbsp;•&nbsp;&nbsp;
 <a href="#roadmap"><b>Roadmap</b></a>
 </p>
 
@@ -177,13 +181,19 @@ AECIDS introduces a hierarchical Edge–Cloud inference pipeline governed by con
 
 ```mermaid
 graph LR
-    A[Traffic] --> B[Edge Inference]
-    B --> C{Confidence}
-    C -->|High| D[Local Decision]
-    C -->|Low| E[Cloud Inference]
-    E --> F[Explainability]
-    F --> G[Threshold Update]
-    G -.-> C
+    A[Traffic] --> B[Packet Capture]
+    B --> C[Feature Extraction]
+    C --> D[Edge LightGBM]
+    D --> E[Temperature Scaling]
+    E --> F{Confidence Router}
+    F -->|"≥ τ"| G[Local Decision]
+    F -->|"< τ"| H[Cloud XGBoost]
+    H --> I[TreeSHAP]
+    I --> J[Adaptation Engine]
+    J --> K[Update τ]
+    K -.-> F
+    G --> L[Dashboard]
+    J --> L
 ```
 
 <div align="right"><sub><a href="#aecids">⬆ back to top</a></sub></div>
@@ -232,22 +242,22 @@ AECIDS follows a **three-tier Edge–Cloud architecture** — Edge Layer, Cloud 
 
 ```mermaid
 graph TD
-    A[IoT Device] --> B[Edge Gateway]
-    B --> C[Feature Extraction]
-    C --> D[ONNX Runtime]
-    D --> E[LightGBM · Edge Model]
-    E --> F[Confidence Calibration]
-    F -->|"P(y|x) ≥ τ"| G[Local Decision]
-    F -->|"P(y|x) < τ"| H[Secure REST API / HTTPS]
-    H --> I[FastAPI Backend]
-    I --> J[XGBoost Ensemble]
-    J --> K[TreeSHAP Explainability]
-    K --> L[Adaptive Threshold Engine]
-    L -.-> F
-    I --> M[(PostgreSQL)]
-    B --> N[(SQLite)]
-    I --> O[WebSocket]
-    O --> P[SOC Dashboard]
+    A[Network Traffic] --> B["Packet Capture<br/>PyShark / Scapy"]
+    B --> C["Feature Extraction<br/>NumPy · Pandas"]
+    C --> D["Edge AI Inference<br/>LightGBM via ONNX Runtime"]
+    D --> E["Confidence Calibration<br/>Temperature Scaling · ECE"]
+    E -->|"confidence ≥ τ"| F["Local Decision"]
+    E -->|"confidence < τ"| G["HTTPS REST API"]
+    F --> H[(SQLite)]
+    F --> M[Dashboard]
+    G --> I["Cloud AI<br/>XGBoost"]
+    I --> J["Explainable AI<br/>TreeSHAP"]
+    J --> K["Adaptation Engine<br/>threshold τ recalculation"]
+    K -->|"Threshold Sync"| E
+    I --> L[(PostgreSQL)]
+    J --> L
+    K --> L
+    L -->|"REST + WebSocket"| M
 ```
 
 <br/>
@@ -258,15 +268,20 @@ graph TD
 
 ```mermaid
 stateDiagram-v2
-    [*] --> EdgeInference
-    EdgeInference --> ConfidenceCalibration
+    [*] --> PacketCapture
+    PacketCapture --> FeatureExtraction
+    FeatureExtraction --> EdgeInference: LightGBM (ONNX)
+    EdgeInference --> ConfidenceCalibration: Temperature Scaling + ECE
     ConfidenceCalibration --> LocalDecision: confidence ≥ τ
     ConfidenceCalibration --> CloudEscalation: confidence < τ
-    CloudEscalation --> CloudInference
-    CloudInference --> Explainability
-    Explainability --> ThresholdUpdate
-    ThresholdUpdate --> EdgeInference
-    LocalDecision --> [*]
+    LocalDecision --> Dashboard
+    CloudEscalation --> CloudInference: XGBoost
+    CloudInference --> Explainability: TreeSHAP
+    Explainability --> AdaptationEngine
+    AdaptationEngine --> ThresholdSync: new τ
+    ThresholdSync --> ConfidenceCalibration
+    AdaptationEngine --> Dashboard
+    Dashboard --> [*]
 ```
 
 </details>
@@ -277,24 +292,32 @@ stateDiagram-v2
 
 ```mermaid
 sequenceDiagram
-    participant Device
-    participant Edge
-    participant Calibration
-    participant Cloud
-    participant SHAP as Explainability
+    participant Net as Traffic
+    participant Cap as Packet Capture
+    participant Feat as Feature Extraction
+    participant Edge as Edge AI (LightGBM)
+    participant Cal as Calibration
+    participant Cloud as Cloud AI (XGBoost)
+    participant SHAP as TreeSHAP
+    participant Adapt as Adaptation Engine
+    participant Dash as Dashboard
 
-    Device->>Edge: Network flow
-    Edge->>Calibration: Prediction
+    Net->>Cap: Live packets / PCAP
+    Cap->>Feat: Raw packets
+    Feat->>Edge: Feature vector
+    Edge->>Cal: Prediction + probability
+    Cal->>Cal: Temperature scaling → calibrated confidence
     alt confidence ≥ τ
-        Calibration-->>Edge: Local decision
-        Edge-->>Device: Classification
+        Cal-->>Dash: Local decision (alert, low latency)
     else confidence < τ
-        Calibration->>Cloud: REST API call (HTTPS)
+        Cal->>Cloud: Feature vector (HTTPS REST API)
         Cloud->>Cloud: XGBoost inference
-        Cloud->>SHAP: Feature attribution
-        SHAP-->>Cloud: Explanation
-        Cloud-->>Edge: Updated threshold
-        Cloud-->>Device: Classification
+        Cloud->>SHAP: Prediction
+        SHAP-->>Cloud: SHAP values
+        Cloud->>Adapt: Prediction history + SHAP drift
+        Adapt->>Adapt: Recalculate threshold τ
+        Adapt-->>Cal: Updated τ (threshold sync)
+        Cloud-->>Dash: Prediction + explanation (REST/WebSocket)
     end
 ```
 
@@ -305,18 +328,26 @@ sequenceDiagram
 <br/>
 
 ```mermaid
-graph LR
-    subgraph Edge Infrastructure
-        IoT[IoT Devices] --> GW[Edge Gateway]
-        GW --> DB1[(SQLite)]
+graph TD
+    subgraph Edge["Edge Deployment"]
+        E1[Docker Container] --> E2["Raspberry Pi 5"]
+        E2 --> E3[Fast Local Inference]
+        E3 --> DB1[(SQLite)]
     end
-    subgraph Cloud Infrastructure
-        API[FastAPI] --> ML[XGBoost]
-        ML --> SHAP[TreeSHAP]
-        API --> DB2[(PostgreSQL)]
-        API -->|WebSocket| SOC[SOC Dashboard]
+    subgraph Cloud["Cloud Deployment"]
+        C1["Ubuntu Server"] --> C2["Docker Compose"]
+        C2 --> C3[FastAPI]
+        C3 --> C4[(PostgreSQL)]
+        C3 --> C5[TreeSHAP]
+        C3 --> C6[XGBoost]
     end
-    GW -->|"REST API / HTTPS"| API
+    subgraph Dashboard["Dashboard Deployment"]
+        D1[React] --> D2[Nginx]
+        D2 --> D3[Browser]
+    end
+    E3 -->|"HTTPS REST API"| C3
+    C3 -->|"REST API + WebSocket"| D1
+    D1 -->|"REST API"| C3
 ```
 
 </details>
@@ -347,6 +378,101 @@ Every cloud prediction produces exact TreeSHAP attributions. These aren't just d
 
 </td></tr>
 </table>
+
+<div align="right"><sub><a href="#aecids">⬆ back to top</a></sub></div>
+
+<br/>
+
+---
+
+<br/>
+
+## System Workflow
+
+The complete flow from raw traffic to a dashboard alert, in eleven steps. Steps 1–5 always run on the edge device; steps 6B–10 run only for escalated flows.
+
+<table>
+<tr><td width="6%" align="center"><b>1</b></td><td width="26%">🛰️&nbsp; <b>Network Traffic Collection</b></td><td>
+
+`PyShark` / `Scapy` capture live packets on the Raspberry Pi 5 (or accept PCAP files during testing) and forward raw packets to Feature Extraction.
+
+</td></tr>
+<tr><td align="center"><b>2</b></td><td>🧮&nbsp; <b>Feature Extraction</b></td><td>
+
+Parses packets, extracts IDS features, cleans data and handles missing values, and converts the result into an ML feature vector (`NumPy` / `Pandas`).
+
+</td></tr>
+<tr><td align="center"><b>3</b></td><td>🧠&nbsp; <b>Edge AI Inference</b></td><td>
+
+`LightGBM` running under `ONNX Runtime` performs local intrusion detection, predicting an attack class and a raw prediction probability.
+
+</td></tr>
+<tr><td align="center"><b>4</b></td><td>🎯&nbsp; <b>Confidence Calibration</b></td><td>
+
+Temperature Scaling (validated with ECE) converts the raw probability into a calibrated, trustworthy confidence score.
+
+</td></tr>
+<tr><td align="center"><b>5</b></td><td>🔀&nbsp; <b>Intelligent Routing</b></td><td>
+
+The Confidence-Calibrated Intelligent Router compares calibrated confidence against threshold `τ`: **≥ τ** → accept the edge prediction; **&lt; τ** → forward to the cloud.
+
+</td></tr>
+<tr><td align="center"><b>6A</b></td><td>⚡&nbsp; <b>Local Decision</b></td><td>
+
+Runs entirely on the edge: generates the alert, saves the prediction locally, updates the dashboard — no cloud communication. Very low latency, low bandwidth, low cost.
+
+</td></tr>
+<tr><td align="center"><b>6B</b></td><td>☁️&nbsp; <b>Cloud Escalation</b></td><td>
+
+The feature vector is sent to the Cloud AI Engine over HTTPS REST API for high-accuracy inference.
+
+</td></tr>
+<tr><td align="center"><b>7</b></td><td>🌲&nbsp; <b>Cloud AI</b></td><td>
+
+`XGBoost` predicts the attack class, produces a confidence score, and stores the prediction in PostgreSQL.
+
+</td></tr>
+<tr><td align="center"><b>8</b></td><td>🔍&nbsp; <b>Explainable AI</b></td><td>
+
+The `TreeSHAP` engine explains the cloud prediction: calculates feature importance, generates SHAP values, and stores the explanation.
+
+</td></tr>
+<tr><td align="center"><b>9</b></td><td>🔁&nbsp; <b>Adaptation Engine</b></td><td>
+
+Monitors prediction history, TreeSHAP drift, disagreement rate, and historical performance to detect model drift and calculate an updated routing threshold `τ`.
+
+</td></tr>
+<tr><td align="center"><b>10</b></td><td>📡&nbsp; <b>Threshold Synchronization</b></td><td>
+
+The updated `τ` is sent securely from cloud to edge; the edge device replaces its previous routing threshold.
+
+</td></tr>
+<tr><td align="center"><b>11</b></td><td>📊&nbsp; <b>Dashboard</b></td><td>
+
+The web dashboard (`React` · `Tailwind CSS` · `Recharts`) displays live alerts, attack types, edge predictions, cloud predictions, SHAP graphs, threshold history, model confidence, system health, and device status.
+
+</td></tr>
+</table>
+
+<br/>
+
+### Overall pipeline
+
+```mermaid
+graph LR
+    A[Traffic] --> B[Packet Capture]
+    B --> C[Feature Extraction]
+    C --> D[Edge LightGBM]
+    D --> E[Temperature Scaling]
+    E --> F{Confidence Router}
+    F -->|"YES: ≥ τ"| G[Local Detection]
+    F -->|"NO: < τ"| H[Cloud XGBoost]
+    H --> I[TreeSHAP]
+    I --> J[Adaptation Engine]
+    J --> K[Update τ]
+    G --> L[Dashboard]
+    K --> L
+```
 
 <div align="right"><sub><a href="#aecids">⬆ back to top</a></sub></div>
 
@@ -416,6 +542,12 @@ Every flow moves through four sequential stages — computational cost scales wi
 $$P_i = \frac{\exp(z_i / T)}{\sum_{j=1}^{K} \exp(z_j / T)}$$
 
 where `T > 0` is the learned temperature and `K` is the number of classes.
+
+**Expected Calibration Error (ECE)** — measures how well confidence tracks accuracy, binning predictions into `M` bins:
+
+$$ECE = \sum_{m=1}^{M} \frac{|B_m|}{n} \left| \text{acc}(B_m) - \text{conf}(B_m) \right|$$
+
+where `B_m` is the set of predictions falling in bin `m`, `n` is the total number of predictions, and `acc`/`conf` are the bin's empirical accuracy and mean confidence. Lower ECE means the calibrated confidence score can be trusted as a routing signal.
 
 **Adaptive routing function** — decides where each flow is handled:
 
@@ -576,6 +708,39 @@ AECIDS
 
 <br/>
 
+## Database &amp; Storage
+
+<table>
+<tr><td width="20%" valign="top">🗄️&nbsp; <b>Edge — SQLite</b></td><td valign="top">
+
+Local Logs · Local Predictions · Cached Alerts · Offline Queue
+
+</td></tr>
+<tr><td valign="top">🐘&nbsp; <b>Cloud — PostgreSQL</b></td><td valign="top">
+
+Users · Alerts · Predictions · SHAP Values · Threshold History · Audit Logs · System Metrics · Model Metadata
+
+</td></tr>
+</table>
+
+<br/>
+
+### API flow
+
+| Path | Transport | Auth |
+|---|---|---|
+| Edge → Cloud | HTTPS REST API | JWT |
+| Cloud → Dashboard | REST API + WebSocket | JWT |
+| Dashboard → Cloud | REST API | JWT |
+
+<div align="right"><sub><a href="#aecids">⬆ back to top</a></sub></div>
+
+<br/>
+
+---
+
+<br/>
+
 ## Installation
 
 <br/>
@@ -717,18 +882,40 @@ Access to the API and dashboard is governed by the following controls:
 
 <br/>
 
+## Monitoring
+
+Both edge and cloud layers expose their own health and performance signals, which feed the SOC dashboard's Overview and Threshold Monitor views.
+
+<table>
+<tr><td width="26%">📝&nbsp; <b>Logging</b></td><td>Structured logs at edge and cloud, correlated by request ID</td></tr>
+<tr><td>❤️&nbsp; <b>Health Checks</b></td><td>Liveness/readiness signal from every gateway and the cloud API</td></tr>
+<tr><td>📈&nbsp; <b>System Metrics</b></td><td>CPU usage, memory usage, and inference time, sampled continuously</td></tr>
+<tr><td>🎯&nbsp; <b>Model Performance Metrics</b></td><td>Ongoing accuracy/latency tracking for both the edge and cloud models</td></tr>
+<tr><td>🎚️&nbsp; <b>Threshold History</b></td><td>Full record of how the adaptive routing threshold has moved over time</td></tr>
+</table>
+
+<div align="right"><sub><a href="#aecids">⬆ back to top</a></sub></div>
+
+<br/>
+
+---
+
+<br/>
+
 ## Security Operations Center
 
 The SOC dashboard centralizes monitoring of edge gateways, cloud inference, routing behavior, and explainability results — designed for operational clarity over visual complexity.
 
 <table>
-<tr><td width="22%">📊&nbsp; <b>Overview</b></td><td>High-level system health and traffic summary</td></tr>
-<tr><td>🚨&nbsp; <b>Threat Feed</b></td><td>Real-time intrusion events</td></tr>
-<tr><td>📡&nbsp; <b>Edge Gateways</b></td><td>Connected gateway monitoring</td></tr>
-<tr><td>☁️&nbsp; <b>Cloud Analytics</b></td><td>Secondary inference statistics</td></tr>
-<tr><td>🔍&nbsp; <b>Explainability</b></td><td>TreeSHAP feature attribution</td></tr>
-<tr><td>🎚️&nbsp; <b>Threshold Monitor</b></td><td>Adaptive routing visualization</td></tr>
-<tr><td>📜&nbsp; <b>Audit Logs</b></td><td>Historical event timeline</td></tr>
+<tr><td width="22%">🚨&nbsp; <b>Live Alerts</b></td><td>Real-time intrusion events as they're generated</td></tr>
+<tr><td>🏷️&nbsp; <b>Attack Types</b></td><td>Breakdown of detected attack classes</td></tr>
+<tr><td>📡&nbsp; <b>Edge Predictions</b></td><td>Local decisions made on-device</td></tr>
+<tr><td>☁️&nbsp; <b>Cloud Predictions</b></td><td>Escalated flows resolved by the cloud ensemble</td></tr>
+<tr><td>🔍&nbsp; <b>SHAP Graphs</b></td><td>TreeSHAP feature attribution per prediction</td></tr>
+<tr><td>🎚️&nbsp; <b>Threshold History</b></td><td>How the adaptive routing threshold τ has evolved</td></tr>
+<tr><td>🎯&nbsp; <b>Model Confidence</b></td><td>Calibrated confidence distribution over time</td></tr>
+<tr><td>❤️&nbsp; <b>System Health</b></td><td>CPU, memory, and inference-time telemetry</td></tr>
+<tr><td>📟&nbsp; <b>Device Status</b></td><td>Connected gateway monitoring</td></tr>
 </table>
 
 <br/>
@@ -875,13 +1062,32 @@ The project is deliberately shaped by practical deployment limits.
 
 <br/>
 
+## Testing
+
+| Layer | Approach |
+|---|---|
+| Unit &amp; integration | `Pytest` across backend and edge-agent |
+| API contract | `Postman` collections + `Swagger`/OpenAPI schema checks |
+| End-to-end | Manual integration testing across the edge → cloud → dashboard path |
+
+<div align="right"><sub><a href="#aecids">⬆ back to top</a></sub></div>
+
+<br/>
+
+---
+
+<br/>
+
 ## Contributing
 
-Contributions are welcome. Before opening a pull request:
+Contributions are welcome. The project follows a **feature-branch workflow** on GitHub — branch per feature, pull request into `main`, tracked against GitHub Issues and Milestones.
+
+Before opening a pull request:
 
 - Confirm the change aligns with the architectural principles above
+- Confirm the change respects the [frozen technology stack](#technology-stack) — no new dependency without prior sign-off
 - Update documentation alongside implementation
-- Include appropriate tests for new functionality
+- Include appropriate tests for new functionality (`Pytest`)
 - Preserve backward compatibility where possible
 
 > [!TIP]
