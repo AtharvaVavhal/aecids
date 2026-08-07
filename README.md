@@ -880,3 +880,1195 @@ Department of Computer Engineering (Software Engineering)
 **Vishwakarma Institute of Technology (VIT), Pune • Department of Computer Engineering • Made with ❤️ in Pune, India**
 
 </div>
+# Research Objectives
+
+AECIDS investigates how hybrid inference architectures can improve intrusion detection for resource-constrained IoT environments without sacrificing latency, explainability, or deployment feasibility.
+
+The project is guided by the following engineering objectives.
+
+| Objective | Description |
+|------------|-------------|
+| Edge Efficiency | Perform low-latency intrusion detection on ARM64 edge gateways using lightweight machine learning models. |
+| Confidence-Aware Routing | Route only uncertain samples to cloud infrastructure through calibrated confidence estimation. |
+| Explainable Security | Produce interpretable predictions using exact TreeSHAP feature attribution. |
+| Adaptive Intelligence | Continuously optimize routing behavior through explanation-driven feedback. |
+| Operational Resilience | Maintain reliable operation during intermittent cloud connectivity. |
+
+---
+
+# Novel Contributions
+
+Unlike conventional intrusion detection pipelines that statically partition workloads between edge and cloud environments, AECIDS introduces a closed-loop architecture where explainability directly influences future routing decisions.
+
+| Contribution | Description |
+|--------------|-------------|
+| Confidence-Calibrated Routing | Dynamic routing decisions based on calibrated posterior confidence. |
+| Explainable Adaptation Engine | TreeSHAP explanations continuously influence routing threshold optimization. |
+| Hybrid Inference Architecture | Lightweight edge inference combined with high-capacity cloud analysis. |
+| Edge-Oriented Deployment | Designed specifically for Raspberry Pi and industrial ARM64 gateways. |
+| Explainability Feedback Loop | Feature attribution drift becomes an optimization signal rather than a reporting artifact. |
+
+---
+
+<a id="architecture"></a>
+
+# System Architecture
+
+The architecture is organized into four cooperative layers.
+
+Each layer performs a distinct computational responsibility while maintaining strict separation of concerns.
+
+```text
+               ┌─────────────────────────────────────┐
+               │            IoT Devices              │
+               └─────────────────────────────────────┘
+                              │
+                              ▼
+               ┌─────────────────────────────────────┐
+               │         Edge Intelligence           │
+               └─────────────────────────────────────┘
+                              │
+                              ▼
+               ┌─────────────────────────────────────┐
+               │     Confidence Calibration Layer    │
+               └─────────────────────────────────────┘
+                     │                     │
+          High Confidence           Low Confidence
+                     │                     │
+                     ▼                     ▼
+             Local Decision       Cloud Intelligence
+                                         │
+                                         ▼
+                              Explainable Adaptation
+                                         │
+                                         ▼
+                             Dynamic Threshold Update
+```
+
+---
+
+## End-to-End Architecture
+
+```mermaid
+graph TD
+
+A[IoT Device]
+
+A --> B[Edge Gateway]
+
+B --> C[Packet Preprocessing]
+
+C --> D[ONNX Runtime]
+
+D --> E[Quantized LightGBM]
+
+E --> F[Confidence Calibration]
+
+F -->|P(y│x) ≥ τ| G[Local Decision]
+
+F -->|P(y│x) < τ| H[Secure MQTT / WebSocket]
+
+H --> I[FastAPI Backend]
+
+I --> J[XGBoost Ensemble]
+
+J --> K[TreeSHAP Explainability]
+
+K --> L[Adaptive Threshold Engine]
+
+L --> F
+
+I --> M[(PostgreSQL)]
+
+B --> N[(SQLite)]
+```
+
+---
+
+## Layered Architecture
+
+```mermaid
+graph LR
+
+subgraph Edge
+
+A[Packet Capture]
+
+B[Feature Engineering]
+
+C[LightGBM]
+
+D[Calibration]
+
+E[SQLite]
+
+end
+
+subgraph Cloud
+
+F[FastAPI]
+
+G[XGBoost]
+
+H[TreeSHAP]
+
+I[Threshold Optimizer]
+
+J[PostgreSQL]
+
+end
+
+A --> B
+
+B --> C
+
+C --> D
+
+D --> F
+
+F --> G
+
+G --> H
+
+H --> I
+
+I --> D
+
+F --> J
+```
+
+---
+
+## Intelligent Routing State Machine
+
+```mermaid
+stateDiagram-v2
+
+[*] --> PacketReceived
+
+PacketReceived --> EdgeInference
+
+EdgeInference --> ConfidenceCalibration
+
+ConfidenceCalibration --> LocalExecution : Confidence ≥ τ
+
+ConfidenceCalibration --> CloudEscalation : Confidence < τ
+
+CloudEscalation --> CloudInference
+
+CloudInference --> Explainability
+
+Explainability --> ThresholdOptimization
+
+ThresholdOptimization --> EdgeInference
+
+LocalExecution --> [*]
+```
+
+---
+
+## Sequence Workflow
+
+```mermaid
+sequenceDiagram
+
+participant IoT
+
+participant Edge
+
+participant Calibration
+
+participant Cloud
+
+participant SHAP
+
+IoT->>Edge: Network Flow
+
+Edge->>Edge: Feature Extraction
+
+Edge->>Edge: LightGBM Prediction
+
+Edge->>Calibration: Confidence Score
+
+alt Confidence ≥ τ
+
+Calibration-->>Edge: Local Classification
+
+Edge-->>IoT: Security Decision
+
+else Confidence < τ
+
+Calibration->>Cloud: Secure Transmission
+
+Cloud->>Cloud: XGBoost Inference
+
+Cloud->>SHAP: Feature Attribution
+
+SHAP-->>Cloud: Explanation
+
+Cloud-->>Edge: Updated Threshold
+
+Cloud-->>IoT: Final Decision
+
+end
+```
+
+---
+
+## Deployment Topology
+
+```mermaid
+graph LR
+
+subgraph Edge Infrastructure
+
+IoT[IoT Devices]
+
+Gateway[Edge Gateway]
+
+SQLite[(SQLite)]
+
+end
+
+subgraph Cloud Infrastructure
+
+API[FastAPI]
+
+ML[XGBoost]
+
+SHAP[TreeSHAP]
+
+DB[(PostgreSQL)]
+
+SOC[SOC Dashboard]
+
+end
+
+IoT --> Gateway
+
+Gateway --> SQLite
+
+Gateway --> API
+
+API --> ML
+
+ML --> SHAP
+
+API --> DB
+
+DB --> SOC
+```
+
+---
+
+# Core Components
+
+## Edge Intelligence
+
+The edge runtime performs real-time inference using an ONNX-quantized LightGBM model specifically optimized for resource-constrained ARM64 gateways.
+
+| Property | Value |
+|----------|-------|
+| Runtime | ONNX Runtime |
+| Model | LightGBM |
+| Hardware | Raspberry Pi / Industrial Gateway |
+| Storage | SQLite |
+| Latency Target | < 2 ms |
+| Memory Budget | < 45 MB |
+
+---
+
+## Confidence Calibration
+
+Prediction confidence is calibrated before any routing decision is made.
+
+Instead of relying on raw model probabilities, AECIDS applies post-hoc calibration to produce reliable confidence estimates.
+
+Supported calibration methods include:
+
+- Temperature Scaling
+- Platt Scaling
+
+Only calibrated confidence values participate in routing decisions.
+
+---
+
+## Cloud Intelligence
+
+Samples that fall below the adaptive confidence threshold are securely transmitted to the cloud for secondary inference.
+
+Cloud infrastructure hosts significantly larger machine learning models that are impractical to execute on embedded hardware.
+
+| Component | Technology |
+|-----------|------------|
+| Backend | FastAPI |
+| Model | XGBoost Ensemble |
+| Communication | MQTT / WebSocket |
+| Storage | PostgreSQL |
+
+---
+
+## Explainable Adaptation Engine
+
+Every cloud prediction generates exact TreeSHAP feature attributions.
+
+Rather than serving only as post-hoc explanations, these feature importance values become optimization signals for the adaptive routing controller.
+
+The controller continuously monitors feature importance drift and updates the routing threshold accordingly.
+
+This establishes a closed-loop architecture where explainability directly improves future inference decisions.
+
+---
+
+<a id="engineering-principles"></a>
+
+# Engineering Principles
+
+AECIDS is designed around five non-negotiable architectural principles.
+
+| Principle | Description |
+|-----------|-------------|
+| Edge First | Every packet is evaluated locally before cloud escalation. |
+| Confidence Before Complexity | Escalation occurs only when calibrated confidence is insufficient. |
+| Explain Every Decision | Cloud predictions always include exact TreeSHAP explanations. |
+| Adaptive Intelligence | Routing thresholds evolve using explainability feedback. |
+| Offline Resilience | Edge gateways continue operating during cloud outages using SQLite-backed local processing. |
+
+> [!IMPORTANT]
+> Explainability is treated as an active optimization signal rather than a passive visualization layer.
+
+---
+
+# Architectural Invariants
+
+The following properties remain invariant throughout the system.
+
+- Every network flow is evaluated at the edge before cloud escalation.
+- Routing decisions depend exclusively on calibrated confidence.
+- Cloud inference is asynchronous.
+- TreeSHAP explanations accompany every cloud prediction.
+- Threshold optimization never bypasses confidence calibration.
+- SQLite guarantees offline persistence at the edge.
+- PostgreSQL serves as the centralized analytical data store.
+- Communication between edge and cloud is encrypted.
+
+# Research Objectives
+
+AECIDS investigates how hybrid inference architectures can improve intrusion detection for resource-constrained IoT environments without sacrificing latency, explainability, or deployment feasibility.
+
+The project is guided by the following engineering objectives.
+
+| Objective | Description |
+|------------|-------------|
+| Edge Efficiency | Perform low-latency intrusion detection on ARM64 edge gateways using lightweight machine learning models. |
+| Confidence-Aware Routing | Route only uncertain samples to cloud infrastructure through calibrated confidence estimation. |
+| Explainable Security | Produce interpretable predictions using exact TreeSHAP feature attribution. |
+| Adaptive Intelligence | Continuously optimize routing behavior through explanation-driven feedback. |
+| Operational Resilience | Maintain reliable operation during intermittent cloud connectivity. |
+
+---
+
+# Novel Contributions
+
+Unlike conventional intrusion detection pipelines that statically partition workloads between edge and cloud environments, AECIDS introduces a closed-loop architecture where explainability directly influences future routing decisions.
+
+| Contribution | Description |
+|--------------|-------------|
+| Confidence-Calibrated Routing | Dynamic routing decisions based on calibrated posterior confidence. |
+| Explainable Adaptation Engine | TreeSHAP explanations continuously influence routing threshold optimization. |
+| Hybrid Inference Architecture | Lightweight edge inference combined with high-capacity cloud analysis. |
+| Edge-Oriented Deployment | Designed specifically for Raspberry Pi and industrial ARM64 gateways. |
+| Explainability Feedback Loop | Feature attribution drift becomes an optimization signal rather than a reporting artifact. |
+
+---
+
+<a id="architecture"></a>
+
+# System Architecture
+
+The architecture is organized into four cooperative layers.
+
+Each layer performs a distinct computational responsibility while maintaining strict separation of concerns.
+
+```text
+               ┌─────────────────────────────────────┐
+               │            IoT Devices              │
+               └─────────────────────────────────────┘
+                              │
+                              ▼
+               ┌─────────────────────────────────────┐
+               │         Edge Intelligence           │
+               └─────────────────────────────────────┘
+                              │
+                              ▼
+               ┌─────────────────────────────────────┐
+               │     Confidence Calibration Layer    │
+               └─────────────────────────────────────┘
+                     │                     │
+          High Confidence           Low Confidence
+                     │                     │
+                     ▼                     ▼
+             Local Decision       Cloud Intelligence
+                                         │
+                                         ▼
+                              Explainable Adaptation
+                                         │
+                                         ▼
+                             Dynamic Threshold Update
+```
+
+---
+
+## End-to-End Architecture
+
+```mermaid
+graph TD
+
+A[IoT Device]
+
+A --> B[Edge Gateway]
+
+B --> C[Packet Preprocessing]
+
+C --> D[ONNX Runtime]
+
+D --> E[Quantized LightGBM]
+
+E --> F[Confidence Calibration]
+
+F -->|P(y│x) ≥ τ| G[Local Decision]
+
+F -->|P(y│x) < τ| H[Secure MQTT / WebSocket]
+
+H --> I[FastAPI Backend]
+
+I --> J[XGBoost Ensemble]
+
+J --> K[TreeSHAP Explainability]
+
+K --> L[Adaptive Threshold Engine]
+
+L --> F
+
+I --> M[(PostgreSQL)]
+
+B --> N[(SQLite)]
+```
+
+---
+
+## Layered Architecture
+
+```mermaid
+graph LR
+
+subgraph Edge
+
+A[Packet Capture]
+
+B[Feature Engineering]
+
+C[LightGBM]
+
+D[Calibration]
+
+E[SQLite]
+
+end
+
+subgraph Cloud
+
+F[FastAPI]
+
+G[XGBoost]
+
+H[TreeSHAP]
+
+I[Threshold Optimizer]
+
+J[PostgreSQL]
+
+end
+
+A --> B
+
+B --> C
+
+C --> D
+
+D --> F
+
+F --> G
+
+G --> H
+
+H --> I
+
+I --> D
+
+F --> J
+```
+
+---
+
+## Intelligent Routing State Machine
+
+```mermaid
+stateDiagram-v2
+
+[*] --> PacketReceived
+
+PacketReceived --> EdgeInference
+
+EdgeInference --> ConfidenceCalibration
+
+ConfidenceCalibration --> LocalExecution : Confidence ≥ τ
+
+ConfidenceCalibration --> CloudEscalation : Confidence < τ
+
+CloudEscalation --> CloudInference
+
+CloudInference --> Explainability
+
+Explainability --> ThresholdOptimization
+
+ThresholdOptimization --> EdgeInference
+
+LocalExecution --> [*]
+```
+
+---
+
+## Sequence Workflow
+
+```mermaid
+sequenceDiagram
+
+participant IoT
+
+participant Edge
+
+participant Calibration
+
+participant Cloud
+
+participant SHAP
+
+IoT->>Edge: Network Flow
+
+Edge->>Edge: Feature Extraction
+
+Edge->>Edge: LightGBM Prediction
+
+Edge->>Calibration: Confidence Score
+
+alt Confidence ≥ τ
+
+Calibration-->>Edge: Local Classification
+
+Edge-->>IoT: Security Decision
+
+else Confidence < τ
+
+Calibration->>Cloud: Secure Transmission
+
+Cloud->>Cloud: XGBoost Inference
+
+Cloud->>SHAP: Feature Attribution
+
+SHAP-->>Cloud: Explanation
+
+Cloud-->>Edge: Updated Threshold
+
+Cloud-->>IoT: Final Decision
+
+end
+```
+
+---
+
+## Deployment Topology
+
+```mermaid
+graph LR
+
+subgraph Edge Infrastructure
+
+IoT[IoT Devices]
+
+Gateway[Edge Gateway]
+
+SQLite[(SQLite)]
+
+end
+
+subgraph Cloud Infrastructure
+
+API[FastAPI]
+
+ML[XGBoost]
+
+SHAP[TreeSHAP]
+
+DB[(PostgreSQL)]
+
+SOC[SOC Dashboard]
+
+end
+
+IoT --> Gateway
+
+Gateway --> SQLite
+
+Gateway --> API
+
+API --> ML
+
+ML --> SHAP
+
+API --> DB
+
+DB --> SOC
+```
+
+---
+
+# Core Components
+
+## Edge Intelligence
+
+The edge runtime performs real-time inference using an ONNX-quantized LightGBM model specifically optimized for resource-constrained ARM64 gateways.
+
+| Property | Value |
+|----------|-------|
+| Runtime | ONNX Runtime |
+| Model | LightGBM |
+| Hardware | Raspberry Pi / Industrial Gateway |
+| Storage | SQLite |
+| Latency Target | < 2 ms |
+| Memory Budget | < 45 MB |
+
+---
+
+## Confidence Calibration
+
+Prediction confidence is calibrated before any routing decision is made.
+
+Instead of relying on raw model probabilities, AECIDS applies post-hoc calibration to produce reliable confidence estimates.
+
+Supported calibration methods include:
+
+- Temperature Scaling
+- Platt Scaling
+
+Only calibrated confidence values participate in routing decisions.
+
+---
+
+## Cloud Intelligence
+
+Samples that fall below the adaptive confidence threshold are securely transmitted to the cloud for secondary inference.
+
+Cloud infrastructure hosts significantly larger machine learning models that are impractical to execute on embedded hardware.
+
+| Component | Technology |
+|-----------|------------|
+| Backend | FastAPI |
+| Model | XGBoost Ensemble |
+| Communication | MQTT / WebSocket |
+| Storage | PostgreSQL |
+
+---
+
+## Explainable Adaptation Engine
+
+Every cloud prediction generates exact TreeSHAP feature attributions.
+
+Rather than serving only as post-hoc explanations, these feature importance values become optimization signals for the adaptive routing controller.
+
+The controller continuously monitors feature importance drift and updates the routing threshold accordingly.
+
+This establishes a closed-loop architecture where explainability directly improves future inference decisions.
+
+---
+
+<a id="engineering-principles"></a>
+
+# Engineering Principles
+
+AECIDS is designed around five non-negotiable architectural principles.
+
+| Principle | Description |
+|-----------|-------------|
+| Edge First | Every packet is evaluated locally before cloud escalation. |
+| Confidence Before Complexity | Escalation occurs only when calibrated confidence is insufficient. |
+| Explain Every Decision | Cloud predictions always include exact TreeSHAP explanations. |
+| Adaptive Intelligence | Routing thresholds evolve using explainability feedback. |
+| Offline Resilience | Edge gateways continue operating during cloud outages using SQLite-backed local processing. |
+
+> [!IMPORTANT]
+> Explainability is treated as an active optimization signal rather than a passive visualization layer.
+
+---
+
+# Architectural Invariants
+
+The following properties remain invariant throughout the system.
+
+- Every network flow is evaluated at the edge before cloud escalation.
+- Routing decisions depend exclusively on calibrated confidence.
+- Cloud inference is asynchronous.
+- TreeSHAP explanations accompany every cloud prediction.
+- Threshold optimization never bypasses confidence calibration.
+- SQLite guarantees offline persistence at the edge.
+- PostgreSQL serves as the centralized analytical data store.
+- Communication between edge and cloud is encrypted.
+---
+
+# Research Methodology
+
+AECIDS follows a hierarchical inference methodology where every network flow is evaluated through a sequence of progressively more computationally expensive decision layers.
+
+Instead of executing heavyweight machine learning models for every packet, the system allocates computational resources adaptively according to prediction uncertainty.
+
+The methodology consists of four sequential stages.
+
+1. **Edge Inference**
+2. **Confidence Calibration**
+3. **Cloud Escalation**
+4. **Explainable Feedback & Adaptive Optimization**
+
+---
+
+## Inference Pipeline
+
+```text
+Network Flow
+      │
+      ▼
+Feature Engineering
+      │
+      ▼
+LightGBM (Edge)
+      │
+      ▼
+Confidence Calibration
+      │
+ ┌────┴────────────┐
+ │                 │
+ ▼                 ▼
+Edge Decision    Cloud Routing
+                     │
+                     ▼
+             XGBoost Ensemble
+                     │
+                     ▼
+              TreeSHAP Analysis
+                     │
+                     ▼
+          Adaptive Threshold Update
+```
+
+---
+
+# Mathematical Formulation
+
+The routing policy is governed by calibrated prediction confidence rather than raw model probabilities.
+
+---
+
+## Temperature Scaling
+
+Given a model logit vector
+
+\[
+z=(z_1,z_2,\ldots,z_K)
+\]
+
+the calibrated posterior probability becomes
+
+\[
+P_i
+=
+\frac{\exp(z_i/T)}
+{\sum_{j=1}^{K}\exp(z_j/T)}
+\]
+
+where
+
+- \(T>0\) denotes the learned temperature parameter
+- \(K\) is the number of prediction classes
+
+---
+
+## Adaptive Routing Function
+
+Each network flow is routed according to
+
+\[
+Route(x)=
+\begin{cases}
+Edge, & P(y|x)\ge\tau \\
+Cloud, & P(y|x)<\tau
+\end{cases}
+\]
+
+where
+
+- \(P(y|x)\) denotes calibrated confidence
+- \(\tau\) is the adaptive routing threshold
+
+---
+
+## Threshold Optimization
+
+Rather than remaining static,
+
+\[
+\tau=f(\Delta SHAP)
+\]
+
+where
+
+\[
+\Delta SHAP
+\]
+
+represents observed feature attribution drift over time.
+
+---
+
+## TreeSHAP
+
+For every cloud prediction,
+
+\[
+f(x)
+=
+\phi_0
++
+\sum_{i=1}^{M}\phi_i
+\]
+
+where
+
+- \(\phi_0\) is the expected prediction
+- \(\phi_i\) denotes the contribution of feature \(i\)
+
+These feature attributions become optimization signals for future routing decisions.
+
+---
+
+# Technology Stack
+
+AECIDS adopts a layered technology stack that separates inference, communication, storage, visualization, and deployment concerns.
+
+---
+
+## Machine Learning
+
+| Layer | Technology | Purpose |
+|--------|------------|---------|
+| Edge Model | LightGBM | Lightweight edge inference |
+| Cloud Model | XGBoost | High-capacity secondary inference |
+| Explainability | TreeSHAP | Feature attribution |
+| Runtime | ONNX Runtime | Embedded execution |
+
+---
+
+## Backend
+
+| Component | Technology |
+|-----------|------------|
+| Framework | FastAPI |
+| Language | Python 3.11 |
+| ASGI Server | Uvicorn |
+| Validation | Pydantic |
+| API | REST + WebSocket |
+| Communication | MQTT |
+
+---
+
+## Frontend
+
+| Component | Technology |
+|-----------|------------|
+| Framework | React 18 |
+| Language | TypeScript |
+| Styling | TailwindCSS |
+| Charts | Recharts |
+| Icons | Lucide |
+
+---
+
+## Storage
+
+| Layer | Technology |
+|--------|------------|
+| Edge Queue | SQLite |
+| Security Database | PostgreSQL 16+ |
+
+---
+
+## Infrastructure
+
+| Component | Technology |
+|-----------|------------|
+| Containers | Docker |
+| Deployment | Docker Compose |
+| Hardware | Raspberry Pi ARM64 |
+
+---
+
+# Repository Structure
+
+The repository is organized by architectural responsibility rather than framework.
+
+```text
+AECIDS
+│
+├── backend/
+│   ├── api/
+│   ├── routers/
+│   ├── services/
+│   ├── calibration/
+│   ├── explainability/
+│   ├── models/
+│   └── database/
+│
+├── edge-agent/
+│   ├── runtime/
+│   ├── inference/
+│   ├── calibration/
+│   ├── mqtt/
+│   ├── storage/
+│   └── monitoring/
+│
+├── frontend/
+│   ├── components/
+│   ├── layouts/
+│   ├── pages/
+│   ├── hooks/
+│   ├── services/
+│   └── styles/
+│
+├── models/
+│
+├── datasets/
+│
+├── docs/
+│   ├── architecture/
+│   ├── research/
+│   ├── diagrams/
+│   └── images/
+│
+├── docker/
+│
+├── tests/
+│
+├── scripts/
+│
+├── docker-compose.yml
+│
+├── requirements.txt
+│
+└── README.md
+```
+
+---
+
+## Repository Overview
+
+```mermaid
+graph TD
+
+Root[AECIDS]
+
+Root --> Backend
+
+Root --> Edge
+
+Root --> Frontend
+
+Root --> Models
+
+Root --> Datasets
+
+Root --> Docs
+
+Root --> Docker
+
+Root --> Tests
+
+Backend --> API
+
+Backend --> Services
+
+Backend --> Database
+
+Edge --> Runtime
+
+Edge --> Calibration
+
+Edge --> MQTT
+
+Frontend --> Components
+
+Frontend --> Dashboard
+```
+
+---
+
+# Installation
+
+## Requirements
+
+| Software | Version |
+|-----------|----------|
+| Python | 3.11+ |
+| Node.js | 20+ |
+| Docker | Latest |
+| Docker Compose | Latest |
+| PostgreSQL | 16+ |
+
+---
+
+## Clone Repository
+
+```bash
+git clone https://github.com/<username>/AECIDS.git
+
+cd AECIDS
+```
+
+---
+
+## Docker Deployment
+
+```bash
+docker compose up --build
+```
+
+---
+
+## Backend
+
+```bash
+cd backend
+
+python -m venv .venv
+
+source .venv/bin/activate
+
+pip install -r requirements.txt
+
+uvicorn app.main:app --reload
+```
+
+---
+
+## Frontend
+
+```bash
+cd frontend
+
+npm install
+
+npm run dev
+```
+
+---
+
+## Edge Runtime
+
+```bash
+cd edge-agent
+
+python main.py
+```
+
+---
+
+# Configuration
+
+The application is configured through environment variables.
+
+| Variable | Description |
+|-----------|-------------|
+| DATABASE_URL | PostgreSQL connection |
+| SQLITE_PATH | Edge database |
+| MQTT_HOST | MQTT broker |
+| MQTT_PORT | Broker port |
+| SECRET_KEY | Application secret |
+| MODEL_PATH | ONNX model location |
+| THRESHOLD | Initial routing threshold |
+
+---
+
+# Development Workflow
+
+```text
+Implement Feature
+
+        │
+
+        ▼
+
+Run Unit Tests
+
+        │
+
+        ▼
+
+Run Edge Runtime
+
+        │
+
+        ▼
+
+Run Backend
+
+        │
+
+        ▼
+
+Launch Dashboard
+
+        │
+
+        ▼
+
+Evaluate System
+```
+
+---
+
+# API Reference
+
+## REST Endpoints
+
+| Method | Endpoint | Description |
+|----------|-----------|------------|
+| GET | /health | Service health |
+| POST | /predict | Edge prediction |
+| POST | /cloud/predict | Cloud inference |
+| GET | /metrics | Runtime metrics |
+| GET | /threshold | Current routing threshold |
+| POST | /threshold | Update routing threshold |
+
+---
+
+## WebSocket
+
+| Endpoint | Description |
+|-----------|-------------|
+| /ws/events | Live security events |
+| /ws/alerts | Alert streaming |
+| /ws/status | Gateway health |
+| /ws/logs | Runtime logs |
+
+---
+
+> [!NOTE]
+> The REST API follows the OpenAPI specification and is fully documented through FastAPI's autogenerated interactive documentation.
+
