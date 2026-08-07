@@ -18,14 +18,27 @@
 
 <br/><br/>
 
-<!-- Tech badges — color-coded by layer -->
-![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+<!-- Hero badges — core stack only, 16 max. Full dependency list lives in Technology Stack. -->
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![LightGBM](https://img.shields.io/badge/LightGBM-7C3AED?style=for-the-badge&logoColor=white)
+![XGBoost](https://img.shields.io/badge/XGBoost-EA580C?style=for-the-badge&logoColor=white)
+![TreeSHAP](https://img.shields.io/badge/TreeSHAP-D97706?style=for-the-badge&logoColor=white)
+![ONNX Runtime](https://img.shields.io/badge/ONNX_Runtime-6E4AFF?style=for-the-badge&logo=onnx&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009485?style=for-the-badge&logo=fastapi&logoColor=white)
 ![React](https://img.shields.io/badge/React-149ECA?style=for-the-badge&logo=react&logoColor=white)
-![ONNX](https://img.shields.io/badge/ONNX_Runtime-6E4AFF?style=for-the-badge&logo=onnx&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-1D63ED?style=for-the-badge&logo=docker&logoColor=white)
+![Raspberry Pi 5](https://img.shields.io/badge/Raspberry_Pi_5-C51A4A?style=for-the-badge&logo=raspberrypi&logoColor=white)
+![IoT Security](https://img.shields.io/badge/IoT_Security-475569?style=for-the-badge&logoColor=white)
+![Edge Computing](https://img.shields.io/badge/Edge_Computing-475569?style=for-the-badge&logoColor=white)
+![Explainable AI](https://img.shields.io/badge/Explainable_AI-475569?style=for-the-badge&logoColor=white)
+
+<sub>Full dependency list in <a href="#technology-stack">Technology Stack</a></sub>
+
+<br/>
 
 <!-- Status badges -->
 ![License](https://img.shields.io/badge/License-MIT-6B7280?style=flat-square)
