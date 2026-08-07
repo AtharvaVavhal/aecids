@@ -16,7 +16,7 @@
 
 <br/>
 
-<sub>Research Project&nbsp; · &nbsp;Engineering Design &amp; Innovation (EDI)&nbsp; · &nbsp;Smart Kopargaon Hackathon&nbsp; · &nbsp;2026–27</sub>
+<sub>Engineering Design &amp; Innovation (EDI) Project&nbsp; · &nbsp;Department of Computer Engineering (Software Engineering)&nbsp; · &nbsp;2026–27</sub>
 
 <br/><br/>
 
