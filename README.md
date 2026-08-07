@@ -1,41 +1,256 @@
 <div align="center">
 
-<img src="./docs/images/vit_white_logo-scaled.jpg" width="360" alt="Vishwakarma Institute of Technology" />
+<img src="./docs/images/vit_white_logo-scaled.jpg" width="360" alt="Vishwakarma Institute of Technology"/>
 
-<br /><br />
+<br><br>
 
-<img src="./docs/images/aecids-logo.jpg" width="240" alt="AECIDS" />
+<img src="./docs/images/aecids-logo.jpg" width="220" alt="AECIDS"/>
 
 # AECIDS
 
 ### Adaptive Explainable Edge–Cloud Intrusion Detection System using Confidence-Calibrated Intelligent Routing for Resource-Constrained IoT Networks
 
-Engineering Design & Innovation (EDI) • Smart Kopargaon Hackathon • Academic Year 2026–27
+Research Project • Engineering Design & Innovation (EDI) • Smart Kopargaon Hackathon • Academic Year 2026–27
 
-<br />
+<br>
 
-![Python](https://img.shields.io/badge/Python-3.11-080808?style=flat-square&logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-080808?style=flat-square&logo=fastapi&logoColor=white)
-![React](https://img.shields.io/badge/React-18-080808?style=flat-square&logo=react&logoColor=61DAFB)
-![TypeScript](https://img.shields.io/badge/TypeScript-080808?style=flat-square&logo=typescript&logoColor=3178C6)
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-080808?style=flat-square&logo=tailwindcss&logoColor=38BDF8)
-![Docker](https://img.shields.io/badge/Docker-080808?style=flat-square&logo=docker&logoColor=2496ED)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16+-080808?style=flat-square&logo=postgresql&logoColor=336791)
-![SQLite](https://img.shields.io/badge/SQLite-080808?style=flat-square&logo=sqlite&logoColor=003B57)
-![LightGBM](https://img.shields.io/badge/LightGBM-080808?style=flat-square)
-![XGBoost](https://img.shields.io/badge/XGBoost-080808?style=flat-square)
-![TreeSHAP](https://img.shields.io/badge/TreeSHAP-080808?style=flat-square)
-![ONNX Runtime](https://img.shields.io/badge/ONNX_Runtime-080808?style=flat-square)
-![Raspberry Pi](https://img.shields.io/badge/Raspberry_Pi-080808?style=flat-square&logo=raspberrypi&logoColor=A22846)
-![EDI Project](https://img.shields.io/badge/EDI_Project-080808?style=flat-square)
-![Active Development](https://img.shields.io/badge/Status-Active_Development-080808?style=flat-square)
+![Python](https://img.shields.io/badge/Python-3.11-111111?style=flat-square&logo=python)
+![FastAPI](https://img.shields.io/badge/FastAPI-111111?style=flat-square&logo=fastapi)
+![React](https://img.shields.io/badge/React-18-111111?style=flat-square&logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-111111?style=flat-square&logo=typescript)
+![Docker](https://img.shields.io/badge/Docker-111111?style=flat-square&logo=docker)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16+-111111?style=flat-square&logo=postgresql)
+![SQLite](https://img.shields.io/badge/SQLite-111111?style=flat-square&logo=sqlite)
+![ONNX Runtime](https://img.shields.io/badge/ONNX_Runtime-111111?style=flat-square)
+![LightGBM](https://img.shields.io/badge/LightGBM-111111?style=flat-square)
+![XGBoost](https://img.shields.io/badge/XGBoost-111111?style=flat-square)
+![TreeSHAP](https://img.shields.io/badge/TreeSHAP-111111?style=flat-square)
+![Raspberry Pi](https://img.shields.io/badge/Raspberry_Pi-111111?style=flat-square&logo=raspberrypi)
+![Status](https://img.shields.io/badge/Status-Active_Development-111111?style=flat-square)
 
-<br />
+<br><br>
 
-[Overview](#about-the-project) •
-[Architecture](#system-architecture) •
-[Quick Start](#installation--quick-start) •
-[API](#api-reference) •
+<a href="#overview">Overview</a> •
+<a href="#architecture">Architecture</a> •
+<a href="#engineering-principles">Engineering Principles</a> •
+<a href="#installation">Installation</a> •
+<a href="#api-reference">API</a> •
+<a href="#roadmap">Roadmap</a>
+
+</div>
+
+---
+
+# Overview
+
+AECIDS is a research-driven hybrid intrusion detection framework designed for resource-constrained Internet of Things (IoT) environments.
+
+The project combines lightweight edge inference, confidence-calibrated intelligent routing, cloud-assisted deep analysis, and explainable machine learning into a unified security architecture.
+
+Rather than treating edge and cloud as isolated systems, AECIDS models them as cooperative inference layers capable of dynamically adapting to uncertainty while maintaining low latency and efficient resource utilization.
+
+---
+
+# Project Status
+
+> [!IMPORTANT]
+> This repository is under active engineering development.
+
+| Phase | Status |
+|---------|--------|
+| Literature Survey | Complete |
+| System Architecture | Complete |
+| Research Methodology | Complete |
+| Software Design Specification | Complete |
+| Backend Development | In Progress |
+| Edge Runtime | In Progress |
+| SOC Dashboard | In Progress |
+| Experimental Evaluation | Pending |
+
+```
+Research & Literature Review        ████████████████████ 100%
+
+System Architecture                 ████████████████████ 100%
+
+Research Methodology                ████████████████████ 100%
+
+Software Design Specification       ████████████████████ 100%
+
+Backend Services                    ████████████░░░░░░░░  In Progress
+
+Edge Runtime                        █████████░░░░░░░░░░░  In Progress
+
+SOC Dashboard                       ██████████░░░░░░░░░░  In Progress
+
+Experimental Validation             ░░░░░░░░░░░░░░░░░░░░  Pending
+```
+
+---
+
+# Project Team
+
+| Member | Role |
+|---------|------|
+| **Atharva Vavhal** | Team Leader |
+| **Vedika Mehta** | Team Member |
+| **Swapnil Pawar** | Team Member |
+| **Janhavi Waychal** | Team Member |
+
+### Academic Information
+
+| Item | Value |
+|------|-------|
+| Institution | Vishwakarma Institute of Technology (VIT), Pune |
+| Department | Computer Engineering (Software Engineering) |
+| Course | Engineering Design & Innovation (EDI) |
+| Academic Year | 2026–27 |
+
+---
+
+# Table of Contents
+
+- Overview
+- Problem Statement
+- Solution Overview
+- Research Objectives
+- Novel Contributions
+- System Architecture
+- Engineering Principles
+- Research Methodology
+- Mathematical Formulation
+- Technology Stack
+- Repository Structure
+- Installation
+- Deployment
+- API Reference
+- SOC Dashboard
+- Experimental Evaluation
+- Roadmap
+- Contributing
+- License
+
+---
+
+# Problem Statement
+
+Modern intrusion detection systems generally follow one of two architectural paradigms.
+
+## Edge-Only Systems
+
+Edge-native IDS architectures provide extremely low inference latency but remain constrained by computational resources, memory budgets, and model complexity.
+
+These limitations significantly reduce their ability to detect sophisticated, polymorphic, and previously unseen attacks.
+
+---
+
+## Cloud-Only Systems
+
+Cloud-native security pipelines provide substantially greater computational capacity and support larger machine learning models.
+
+However, every network flow must traverse the network before inference can occur, increasing latency, WAN utilization, infrastructure cost, and dependency on stable connectivity.
+
+---
+
+## Engineering Challenge
+
+Design an intrusion detection framework capable of simultaneously providing
+
+- low edge latency,
+- efficient cloud utilization,
+- adaptive decision making,
+- explainable predictions,
+- and deployment on resource-constrained IoT gateways.
+
+---
+
+# Solution Overview
+
+AECIDS introduces a hierarchical Edge–Cloud inference pipeline governed by confidence-calibrated intelligent routing.
+
+Instead of forwarding every packet to the cloud, each network flow is first analyzed locally using a lightweight machine learning model.
+
+The calibrated confidence score determines whether the prediction is sufficiently reliable for immediate edge execution or whether the sample should be escalated for deeper cloud analysis.
+
+Only uncertain traffic is transmitted to the cloud, reducing bandwidth utilization while preserving analytical capability for complex attack patterns.
+
+---
+
+## Four-Layer Architecture
+
+| Layer | Responsibility |
+|---------|----------------|
+| Edge Intelligence | Real-time lightweight intrusion detection |
+| Confidence Calibration | Reliability estimation of edge predictions |
+| Cloud Intelligence | High-capacity secondary inference |
+| Explainable Adaptation Engine | Dynamic optimization of routing threshold |
+
+---
+
+## High-Level Workflow
+
+```mermaid
+graph LR
+
+Traffic --> Edge
+
+Edge --> Calibration
+
+Calibration -->|High Confidence| LocalDecision
+
+Calibration -->|Low Confidence| Cloud
+
+Cloud --> Explainability
+
+Explainability --> ThresholdOptimization
+
+ThresholdOptimization --> Edge
+```
+
+---
+
+# Why Edge–Cloud?
+
+Traditional IDS architectures force developers to choose between speed and intelligence.
+
+AECIDS removes this trade-off by introducing an adaptive routing mechanism capable of selecting the appropriate computational layer for each individual network flow.
+
+The result is a system that remains lightweight under normal operating conditions while preserving the analytical capability required for uncertain or anomalous traffic.
+
+---
+
+# Design Philosophy
+
+AECIDS is designed around five architectural principles.
+
+## Edge First
+
+Every packet is evaluated locally before cloud escalation.
+
+---
+
+## Confidence Before Complexity
+
+Cloud inference occurs only when prediction confidence falls below the adaptive routing threshold.
+
+---
+
+## Explain Every Decision
+
+Every cloud prediction produces exact TreeSHAP feature attributions.
+
+---
+
+## Adaptive Intelligence
+
+Explainability continuously improves routing behaviour through closed-loop threshold optimization.
+
+---
+
+## Offline Resilience
+
+Edge gateways continue operating during intermittent or complete cloud connectivity loss through local inference and embedded SQLite storage.
+
+---[API](#api-reference) •
 [Roadmap](#roadmap--future-scope)
 
 </div>
