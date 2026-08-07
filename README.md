@@ -4,7 +4,7 @@
 
 <br/><br/>
 
-<img src="https://i.ibb.co/m5ZSpM0f/aecids-logo.png" width="300" alt="AECIDS"/>
+<img src="https://i.ibb.co/m5ZSpM0f/aecids-logo.png" width="150" alt="AECIDS"/>
 
 <br/>
 
