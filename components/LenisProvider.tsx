@@ -12,39 +12,13 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     if (typeof window === 'undefined') return;
 
     const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduce) {
+    const usesTouch = window.matchMedia('(pointer: coarse)').matches;
+    if (prefersReduce || usesTouch) {
       setEnabled(false);
       return;
     }
 
-    const wrapper = wrapperRef.current || undefined;
-    const content = wrapperRef.current?.querySelector('.lenis__scroll') || undefined;
-
-    let lenis: any;
-    try {
-      lenis = new Lenis({
-      wrapper,
-      content,
-      duration: 1.0,
-      easing: (t: number) => 1 - Math.pow(1 - t, 4), // soft expo-out like feel
-      wheelMultiplier: 1.05,
-      smooth: true,
-      smoothTouch: true,
-    } as any);
-    } catch (err) {
-      // initialization failed; leave Lenis disabled
-      setEnabled(false);
-      return;
-    }
-
-    setEnabled(true);
-
-    function raf(time: number) {
-      lenis.raf(time);
-      rafRef.current = requestAnimationFrame(raf);
-    }
-
-    rafRef.current = requestAnimationFrame(raf);
+    let lenis: Lenis | null = null;
     let rafId: number | null = null;
 
     // Retry initialization until wrapper and content are available (max attempts)
@@ -72,8 +46,8 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
           duration: 1.0,
           easing: (t: number) => 1 - Math.pow(1 - t, 4), // soft expo-out like feel
           wheelMultiplier: 1.05,
-          smooth: true,
-          smoothTouch: true,
+          smoothWheel: true,
+          syncTouch: false,
         } as any);
       } catch (err) {
         setEnabled(false);
@@ -83,7 +57,7 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
       setEnabled(true);
 
       function raf(time: number) {
-        lenis.raf(time);
+        lenis?.raf(time);
         rafRef.current = requestAnimationFrame(raf);
       }
 
@@ -101,7 +75,7 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
       const hash = href.replace(/^#/, '');
       if (!hash) return;
       const target = document.getElementById(hash);
-      if (target) {
+      if (target && lenis) {
         e.preventDefault();
         const navH = document.querySelector('header')?.clientHeight ?? 0;
         lenis.scrollTo(target, { offset: -navH - 8 });
@@ -113,7 +87,7 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
       const hash = location.hash.slice(1);
       if (!hash) return;
       const target = document.getElementById(hash);
-      if (target) {
+      if (target && lenis) {
         const navH = document.querySelector('header')?.clientHeight ?? 0;
         lenis.scrollTo(target, { offset: -navH - 8 });
       }

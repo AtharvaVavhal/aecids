@@ -322,6 +322,7 @@ export function MaintenanceModal({
           animate="visible"
           exit="exit"
           onClick={onClose}
+          data-lenis-prevent-touch
           className="
             fixed inset-0 z-50 flex items-end justify-center overflow-y-auto
             bg-black/60 px-3 py-3 backdrop-blur-sm
@@ -338,7 +339,12 @@ export function MaintenanceModal({
             animate="visible"
             exit="exit"
             onClick={(e) => e.stopPropagation()}
-            style={{ willChange: 'transform, opacity, filter' }}
+            data-lenis-prevent-touch
+            style={{
+              WebkitOverflowScrolling: 'touch',
+              touchAction: 'pan-y',
+              willChange: 'transform, opacity, filter',
+            }}
             className="
               relative grid max-h-[calc(100svh-1.5rem)] w-full max-w-5xl
               grid-cols-1 overflow-y-auto overflow-x-hidden rounded-xl border border-white/[0.08]
