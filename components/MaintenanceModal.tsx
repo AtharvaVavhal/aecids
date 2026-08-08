@@ -322,7 +322,11 @@ export function MaintenanceModal({
           animate="visible"
           exit="exit"
           onClick={onClose}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
+          className="
+            fixed inset-0 z-50 flex items-end justify-center overflow-y-auto
+            bg-black/60 px-3 py-3 backdrop-blur-sm
+            sm:items-center sm:p-5
+          "
         >
           <motion.div
             key="modal"
@@ -336,13 +340,15 @@ export function MaintenanceModal({
             onClick={(e) => e.stopPropagation()}
             style={{ willChange: 'transform, opacity, filter' }}
             className="
-              relative grid w-full max-w-5xl grid-cols-1 overflow-hidden
-              rounded-2xl border border-white/[0.08] bg-[#030712]
+              relative grid max-h-[calc(100svh-1.5rem)] w-full max-w-5xl
+              grid-cols-1 overflow-y-auto overflow-x-hidden rounded-xl border border-white/[0.08]
+              bg-[#030712]
               shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_32px_64px_-16px_rgba(0,0,0,0.85)]
-              md:grid-cols-2
+              sm:max-h-[calc(100svh-2.5rem)] sm:rounded-2xl
+              md:grid-cols-2 md:overflow-hidden
             "
           >
-            <div className="absolute right-4 top-4 z-10">
+            <div className="absolute right-3 top-3 z-10 sm:right-4 sm:top-4">
               <IconButton onClick={onClose} label="Close modal">
                 <X size={16} strokeWidth={2} />
               </IconButton>
@@ -353,7 +359,12 @@ export function MaintenanceModal({
               variants={leftStagger}
               initial="hidden"
               animate="visible"
-              className="flex flex-col justify-between border-b border-white/[0.06] px-8 py-10 md:border-b-0 md:border-r"
+              className="
+                flex min-h-0 flex-col justify-between border-b
+                border-white/[0.06] px-5 py-6 pr-11
+                sm:px-7 sm:py-8 sm:pr-12
+                md:max-h-[calc(100svh-2.5rem)] md:overflow-y-auto md:border-b-0 md:border-r md:px-8 md:py-10 md:pr-8
+              "
             >
               <div>
                 <MaintenanceBanner />
@@ -371,7 +382,7 @@ export function MaintenanceModal({
                 <motion.h1
                   id="aecids-modal-title"
                   variants={fadeUp}
-                  className="font-[Inter] text-2xl font-semibold leading-tight tracking-tight text-gray-100"
+                  className="font-[Inter] text-xl font-semibold leading-tight tracking-tight text-gray-100 sm:text-2xl"
                 >
                   We&apos;re crafting the future of intelligent Edge-Cloud Security
                 </motion.h1>
@@ -398,23 +409,41 @@ export function MaintenanceModal({
               {/* Telemetry status bar */}
               <motion.div
                 variants={fadeUp}
-                className="mt-10 grid grid-cols-3 gap-2 border-t border-white/[0.06] pt-5"
+                className="
+                  mt-8 grid grid-cols-1 gap-3 border-t border-white/[0.06] pt-5
+                  min-[420px]:grid-cols-3 md:mt-10 md:gap-2
+                "
               >
                 {STATS.map(({ label, value, unit, icon: Icon }) => (
-                  <div key={label} className="flex flex-col gap-1.5">
+                  <div
+                    key={label}
+                    className="
+                      flex min-w-0 items-center gap-3 min-[420px]:flex-col
+                      min-[420px]:items-start min-[420px]:gap-1.5
+                    "
+                  >
                     <Icon size={13} strokeWidth={2} className="text-cyan-400/70" />
-                    <span className="font-[JetBrains_Mono] text-base font-medium tabular-nums text-gray-100">
-                      {value}
-                      {unit && <span className="ml-0.5 text-xs text-gray-500">{unit}</span>}
-                    </span>
-                    <span className="text-[11px] leading-none text-gray-500">{label}</span>
+                    <div className="min-w-0">
+                      <span className="font-[JetBrains_Mono] text-base font-medium tabular-nums text-gray-100">
+                        {value}
+                        {unit && <span className="ml-0.5 text-xs text-gray-500">{unit}</span>}
+                      </span>
+                      <span className="ml-2 text-[11px] leading-none text-gray-500 min-[420px]:ml-0 min-[420px]:block">
+                        {label}
+                      </span>
+                    </div>
                   </div>
                 ))}
               </motion.div>
             </motion.div>
 
             {/* ── RIGHT COLUMN ──────────────────────────────── */}
-            <div className="flex flex-col bg-white/[0.015] px-8 py-10">
+            <div
+              className="
+                flex min-h-0 flex-col bg-white/[0.015]
+                px-5 py-6 sm:px-7 sm:py-8 md:max-h-[calc(100svh-2.5rem)] md:overflow-y-auto md:px-8 md:py-10
+              "
+            >
               <motion.h3
                 initial={{ opacity: 0, y: 10, x: 8 }}
                 animate={{ opacity: 1, y: 0, x: 0 }}

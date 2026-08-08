@@ -1,4 +1,4 @@
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 
 // Mock framer-motion to avoid animation complexity in tests
 jest.mock('framer-motion', () => ({
