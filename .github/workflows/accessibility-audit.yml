@@ -1,0 +1,41 @@
+name: Accessibility Audit
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  accessibility-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Start production server
+        env:
+          PORT: 3000
+        run: |
+          nohup npm run start --silent &
+          for i in {1..30}; do
+            if curl -sSf http://localhost:3000 > /dev/null; then
+              echo "Server ready"
+              break
+            fi
+            sleep 1
+          done
+
+      - name: Run axe audit
+        run: node tools/axe-audit.js http://localhost:3000
