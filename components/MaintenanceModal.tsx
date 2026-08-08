@@ -298,7 +298,7 @@ interface MaintenanceModalProps {
 export function MaintenanceModal({
   open,
   onClose,
-  githubUrl = 'https://github.com',
+  githubUrl = 'https://github.com/AtharvaVavhal/aecids',
   docsUrl = '#',
 }: MaintenanceModalProps) {
   useEffect(() => {

@@ -25,12 +25,21 @@ export function Footer() {
         {/* Links & License */}
         <div className="flex items-center gap-6 text-xs text-muted">
           <a
-            href="https://github.com"
+            href="https://github.com/AtharvaVavhal/aecids"
             target="_blank"
             rel="noreferrer"
             className="hover:text-gray-200 transition-colors inline-flex items-center gap-1"
           >
             <span>GitHub Repository</span>
+            <ExternalLink className="w-3 h-3" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/atharva-vavhal?originalSubdomain=in"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-gray-200 transition-colors inline-flex items-center gap-1"
+          >
+            <span>LinkedIn</span>
             <ExternalLink className="w-3 h-3" />
           </a>
           <a

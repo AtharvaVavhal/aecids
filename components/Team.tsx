@@ -19,8 +19,8 @@ const TEAM_MEMBERS: TeamMember[] = [
     role: "Lead Architect & AI Systems",
     focus: "TreeSHAP Engine & Hybrid Pipeline",
     icon: Code,
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
+    github: "https://github.com/AtharvaVavhal/aecids",
+    linkedin: "https://www.linkedin.com/in/atharva-vavhal?originalSubdomain=in",
   },
   {
     name: "Vedika Mehta",
